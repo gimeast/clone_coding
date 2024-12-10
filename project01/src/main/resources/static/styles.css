@@ -1,0 +1,27 @@
+#pagination {
+    display: flex;
+    justify-content: center; /* 페이지 번호를 가운데 정렬 */
+    align-items: center;
+
+    .page-link {
+        padding: 5px 10px; /* 각 페이지 링크의 내부 여백 */
+        text-decoration: none; /* 링크 밑줄 제거 */
+        color: #007bff; /* 기본 텍스트 색상 */
+        border: 1px solid #ddd; /* 경계선 추가 */
+        border-radius: 4px; /* 모서리를 둥글게 */
+        cursor: pointer;
+        transition: all 0.3s ease; /* 호버 시 부드러운 전환 효과 */
+
+        &:hover {
+            background-color: #f0f0f0; /* 마우스 호버 시 배경 변경 */
+            color: #0056b3; /* 텍스트 색상 변경 */
+        }
+
+        &.active {
+            background-color: #007bff; /* 현재 선택된 페이지 배경 */
+            color: white; /* 현재 페이지의 텍스트 색 */
+            border-color: #007bff; /* 경계선 색 변경 */
+            cursor: default; /* 마우스를 올려도 클릭하지 못하게 */
+        }
+    }
+}

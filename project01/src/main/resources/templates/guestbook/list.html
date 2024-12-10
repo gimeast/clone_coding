@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<th:block th:replace="~{/guestbook/layout/basic :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div id="content">
+            <div id="data-container">
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Writer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- guestbookPage.content로 데이터 출력 -->
+                    <tr th:each="guestbook : ${pageList.content}">
+                        <td th:text="${guestbook.title}"></td>
+                        <td th:text="${guestbook.content}"></td>
+                        <td th:text="${guestbook.writer}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination"
+             th:attr="data-total-pages=${pageList.totalPages}, data-current-page=${pageList.number + 1}">
+        </div>
+    </th:block>
+</th:block>
+
+<script type="module">
+    import { setupPagination } from '/js/pagination.js';
+
+    const URI = '/guestbook/list'; // API 엔드포인트
+    setupPagination('pagination', URI);
+</script>
+</html>
