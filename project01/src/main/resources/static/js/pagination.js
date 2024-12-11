@@ -1,7 +1,8 @@
-export function setupPagination(paginationContainerId, dataFetchURI) {
+export function setupPagination(paginationContainerId, dataFetchURI, search) {
     const paginationContainer = document.getElementById(paginationContainerId);
     const totalPages = Number(paginationContainer.getAttribute('data-total-pages'));
     const currentPage = Number(paginationContainer.getAttribute('data-current-page'));
+    const size = Number(paginationContainer.getAttribute('data-size'));
 
     // 페이지네이션 렌더링 함수 호출
     renderPagination(currentPage, totalPages, dataFetchURI);
@@ -45,7 +46,7 @@ export function setupPagination(paginationContainerId, dataFetchURI) {
                 e.preventDefault();
                 const page = Number(link.getAttribute('data-page'));
 
-                fetch(`${URI}?page=${page}&size=10`)
+                fetch(`${URI}?page=${page}&size=${size}&search=${search}`)
                     .then(response => response.text())
                     .then(data => {
                         updateContentAndPagination(data, URI);
@@ -59,11 +60,11 @@ export function setupPagination(paginationContainerId, dataFetchURI) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
 
-        const newContent = doc.querySelector('#content').innerHTML;
+        const newContent = doc.querySelector('#data-container').innerHTML;
         const newPagination = doc.querySelector(`#${paginationContainerId}`);
 
         // 콘텐츠 업데이트
-        document.getElementById('content').innerHTML = newContent;
+        document.getElementById('data-container').innerHTML = newContent;
 
         // 페이지네이션 데이터 업데이트
         const totalPages = Number(newPagination.getAttribute('data-total-pages'));

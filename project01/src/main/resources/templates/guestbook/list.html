@@ -7,31 +7,43 @@
 </head>
 <th:block th:replace="~{/guestbook/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-        <div id="content">
-            <div id="data-container">
-                <table border="1">
-                    <thead>
+        <div id="data-container">
+            <table border="1">
+                <thead>
                     <tr>
+                        <th>No</th>
                         <th>Title</th>
                         <th>Content</th>
                         <th>Writer</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <!-- guestbookPage.content로 데이터 출력 -->
-                    <tr th:each="guestbook : ${pageList.content}">
+                </thead>
+                <tbody>
+                    <tr th:each="guestbook,state : ${pageList.content}">
+                        <td th:text="${(pageList.number * pageList.size) + state.index + 1}"></td>
                         <td th:text="${guestbook.title}"></td>
                         <td th:text="${guestbook.content}"></td>
                         <td th:text="${guestbook.writer}"></td>
                     </tr>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
+
+        <!-- Search -->
+        <form th:action="@{/guestbook/list}" method="get">
+            <select name="size">
+                <option value="10" th:selected="${pageRequest.size == 10}">10</option>
+                <option value="20" th:selected="${pageRequest.size == 20}">20</option>
+                <option value="30" th:selected="${pageRequest.size == 30}">30</option>
+                <option value="50" th:selected="${pageRequest.size == 50}">50</option>
+                <option value="100" th:selected="${pageRequest.size == 100}">100</option>
+            </select>
+            <input type="text" id="search" name="search" th:value="${search}" placeholder="제목/내용">
+            <button type="submit">검색</button>
+        </form>
 
         <!-- Pagination -->
         <div id="pagination"
-             th:attr="data-total-pages=${pageList.totalPages}, data-current-page=${pageList.number + 1}">
+             th:attr="data-total-pages=${pageList.totalPages}, data-current-page=${pageList.number + 1}, data-size=${pageRequest.size}">
         </div>
     </th:block>
 </th:block>
@@ -40,6 +52,8 @@
     import { setupPagination } from '/js/pagination.js';
 
     const URI = '/guestbook/list'; // API 엔드포인트
-    setupPagination('pagination', URI);
+    const search = document.getElementById('search').value;
+
+    setupPagination('pagination', URI, search);
 </script>
 </html>
