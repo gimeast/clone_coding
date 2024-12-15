@@ -111,17 +111,19 @@ public class GuestbookRepositoryTest {
 
         repository.findAll().forEach(System.out::println);
     }
-    
+
     @Test
     @DisplayName("Repository에서 DTO로 바로 받아오기")
     void getGuestbookDTOByRepository() {
         Pageable pageable = PageRequestDTO.builder()
-                .page(1)
+                .page(0)
                 .size(10)
                 .build()
                 .getPageable(Sort.by("title").descending());
+        String search = "테스트";
 
-        Page<GuestbookDTO> page = repository.findAllGuestbookDTO(pageable);
+        Page<GuestbookDTO> page = repository.findGuestbooksByCondition(pageable, search);
+
         page.forEach(System.out::println);
     }
 }

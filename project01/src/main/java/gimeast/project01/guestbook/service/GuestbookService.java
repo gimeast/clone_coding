@@ -3,8 +3,10 @@ package gimeast.project01.guestbook.service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import gimeast.project01.guestbook.common.PageRequestDTO;
+import gimeast.project01.guestbook.dto.GuestbookDTO;
 import gimeast.project01.guestbook.entity.Guestbook;
 import gimeast.project01.guestbook.entity.QGuestbook;
+import gimeast.project01.guestbook.mapper.GuestbookMapper;
 import gimeast.project01.guestbook.repository.GuestbookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,25 +24,23 @@ public class GuestbookService {
      * @param search
      * @return guestbooks
      */
-    public Page<Guestbook> getGuestbooks(PageRequestDTO pageRequest, String search) {
-        QGuestbook qGuestbook = QGuestbook.guestbook;
-
-        BooleanBuilder builder = buildContentOrTitleSearchPredicate(search, qGuestbook);
-
+    public Page<GuestbookDTO> getGuestbooks(PageRequestDTO pageRequest, String search) {
         Pageable pageable = PageRequestDTO.builder()
                 .page(pageRequest.getPage())
                 .size(pageRequest.getSize())
                 .build()
                 .getPageable(Sort.by("title").descending());
 
-        return repository.findAll(builder, pageable);
+        return repository.findGuestbooksByCondition(pageable, search);
     }
 
-    private static BooleanBuilder buildContentOrTitleSearchPredicate(String search, QGuestbook qGuestbook) {
-        BooleanExpression exContent = qGuestbook.content.contains(search);
-        BooleanExpression exTitle = qGuestbook.title.contains(search);
-        BooleanExpression exAll = exContent.or(exTitle);
+    public Long saveGuestbook(GuestbookDTO dto) {
+        Guestbook guestbook = GuestbookMapper.INSTANCE.dtoToEntity(dto);
+        repository.save(guestbook);
+        return guestbook.getId();
+    }
 
-        return new BooleanBuilder().and(exAll);
+    public GuestbookDTO getGuestbook(Long id) {
+        return repository.findGuestbookDTOById(id);
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<th:block th:fragment="setContent(content)">
+<th:block th:fragment="setContent(layout_content)">
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
@@ -12,7 +12,7 @@
             padding: 0;
         }
 
-        .header {
+        .layout-header {
             width: 100vw;
             height: 20vh;
             background-color: #0077b6; /* Deep Sky Blue */
@@ -22,17 +22,17 @@
             align-items: center;
         }
 
-        .content {
+        .layout-content {
             width: 100vw;
-            height: 70vh;
-            background-color: #f1f1f1; /* Light Gray */
+            min-height: 70vh; /* 기본 높이는 유지하지만 콘텐츠 높이에 따라 확장 */
+            background-color: #f1f1f1;
             display: flex;
             flex-direction: column; /* 세로로 정렬 */
             justify-content: center; /* 세로 방향 기준으로 가운데 정렬 */
             align-items: center; /* 가로 방향 기준으로 가운데 정렬 */
         }
 
-        .footer {
+        .layout-footer {
             width: 100vw;
             height: 10vh;
             background-color: #023047; /* Deep Blue */
@@ -43,13 +43,13 @@
         }
     </style>
 
-    <div class="header">
+    <div class="layout-header">
         <h1>HEADER</h1>
     </div>
-    <div class="content">
-        <th:block th:replace="${content}"></th:block>
+    <div class="layout-content">
+        <th:block th:replace="${layout_content}"></th:block>
     </div>
-    <div class="footer">
+    <div class="layout-footer">
         <h1>FOOTER</h1>
     </div>
     </body>

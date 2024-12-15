@@ -12,32 +12,32 @@
             padding: 0;
         }
 
-        .header {
+        .layout-header {
             width: 100vw;
             height: 20vh;
             background-color: aqua;
         }
 
-        .content {
+        .layout-content {
             width: 100vw;
             height: 70vh;
             background-color: lightgray;
         }
 
-        .footer {
+        .layout-footer {
             width: 100vw;
             height: 10vh;
             background-color: green;
         }
     </style>
 
-    <div class="header">
+    <div class="layout-header">
         <h1>HEADER</h1>
     </div>
-    <div class="content">
+    <div class="layout-content">
         <th:block th:replace="${content}"></th:block>
     </div>
-    <div class="footer">
+    <div class="layout-footer">
         <h1>FOOTER</h1>
     </div>
     </body>
