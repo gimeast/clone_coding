@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class GuestbookController {
     private final GuestbookService service;
+    private final GuestbookRepository repository;
 
     @GetMapping("/write")
     public void write(@RequestParam(required = false) Long id, Model model) {
@@ -57,5 +59,11 @@ public class GuestbookController {
         GuestbookDTO dto = service.getGuestbook(id);
         model.addAttribute("dto", dto);
         return "guestbook/detail";
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> detail(@PathVariable Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.ok("success");
     }
 }

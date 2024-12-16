@@ -53,6 +53,7 @@
             text-align: center;
             margin-top: 20px;
         }
+
         .btn {
             font-size: 1rem;
             font-weight: bold;
@@ -97,16 +98,51 @@
 
             <div class="form-group">
                 <label for="content">내용</label>
-                <textarea id="content" name="content" rows="8" th:text="${dto.content}" placeholder="내용을 입력하세요" required></textarea>
+                <textarea id="content" name="content" rows="8" th:text="${dto.content}" placeholder="내용을 입력하세요"
+                          required></textarea>
             </div>
         </form>
 
         <div class="btn-container">
             <button class="btn" th:onclick="|location.href='@{/guestbook/list}'|">이전페이지</button>
-            <button type="button" class="btn" th:onclick="|location.href='@{/guestbook/write(id=${dto.id})}'|">수정</button>
+            <button type="button" class="btn" th:onclick="|location.href='@{/guestbook/write(id=${dto.id})}'|">수정
+            </button>
+            <button type="button" class="btn" id="deleteBtn">삭제</button>
         </div>
     </th:block>
 </th:block>
 
+<script th:inline="javascript">
+    document.getElementById('deleteBtn').addEventListener('click', async (event) => {
+        event.defaultPrevented;
+
+        const id = [[${dto.id}]];
+
+        const formData = {
+            id: id
+        };
+
+        // JSON 데이터를 서버로 전송
+        try {
+            const response = await fetch('/guestbook/' + id, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                location.href = '/guestbook/list';
+            } else {
+                // 요청 실패 처리
+                const errorData = await response.json();
+                alert(`저장에 실패했습니다: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error('Error: ', error);
+            alert('요청 중 오류가 발생했습니다.');
+        }
+
+    });
+</script>
 </body>
 </html>

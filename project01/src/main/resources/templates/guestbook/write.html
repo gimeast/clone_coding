@@ -138,7 +138,7 @@
             if (response.ok) {
                 // 요청 성공 처리
                 const id = await response.json(); // 서버에서 반환한 ID
-                window.location.href = `/guestbook/${id}`; // 상세 페이지로 이동
+                location.href = `/guestbook/${id}`; // 상세 페이지로 이동
             } else {
                 // 요청 실패 처리
                 const errorData = await response.json();
