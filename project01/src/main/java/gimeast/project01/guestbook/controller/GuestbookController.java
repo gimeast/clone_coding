@@ -6,6 +6,7 @@ import gimeast.project01.guestbook.entity.Guestbook;
 import gimeast.project01.guestbook.repository.GuestbookRepository;
 import gimeast.project01.guestbook.service.GuestbookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/guestbook")
 @RequiredArgsConstructor
+@Slf4j
 public class GuestbookController {
     private final GuestbookService service;
 
     @GetMapping("/write")
-    public void write() {}
+    public void write(@RequestParam(required = false) Long id, Model model) {
+        GuestbookDTO dto = new GuestbookDTO();
+
+        if (id != null) { // 수정 시 데이터 로드
+            dto = service.getGuestbook(id);
+        }
+
+        model.addAttribute("dto", dto);
+        log.info("dto = {}", dto);
+    }
 
     @PostMapping("/write")
     public ResponseEntity<Long> submit(@RequestBody GuestbookDTO dto) {

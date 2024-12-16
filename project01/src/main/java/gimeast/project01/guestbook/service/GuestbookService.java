@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,10 +35,22 @@ public class GuestbookService {
         return repository.findGuestbooksByCondition(pageable, search);
     }
 
+    @Transactional
     public Long saveGuestbook(GuestbookDTO dto) {
-        Guestbook guestbook = GuestbookMapper.INSTANCE.dtoToEntity(dto);
-        repository.save(guestbook);
-        return guestbook.getId();
+        Long id = dto.getId();
+
+        if (id != null) {
+            Guestbook guestbook = repository.findById(id).orElseThrow();
+            guestbook.setTitle(dto.getTitle());
+            guestbook.setContent(dto.getContent());
+            guestbook.setWriter(dto.getWriter());
+            return guestbook.getId();
+        } else {
+            Guestbook guestbook = GuestbookMapper.INSTANCE.dtoToEntity(dto);
+            repository.save(guestbook);
+            return guestbook.getId();
+        }
+
     }
 
     public GuestbookDTO getGuestbook(Long id) {
