@@ -54,18 +54,6 @@
             margin-top: 20px;
         }
 
-        .btn {
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            background-color: #0077b6;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
         @media (max-width: 768px) {
             .form-container {
                 width: 90%;
@@ -104,10 +92,10 @@
         </form>
 
         <div class="btn-container">
-            <button class="btn" th:onclick="|location.href='@{/guestbook/list}'|">이전페이지</button>
-            <button type="button" class="btn" th:onclick="|location.href='@{/guestbook/write(id=${dto.id})}'|">수정
+            <button th:onclick="|location.href='@{/guestbook/list}'|">이전페이지</button>
+            <button type="button" th:onclick="|location.href='@{/guestbook/write(id=${dto.id})}'|">수정
             </button>
-            <button type="button" class="btn" id="deleteBtn">삭제</button>
+            <button type="button" id="deleteBtn">삭제</button>
         </div>
     </th:block>
 </th:block>

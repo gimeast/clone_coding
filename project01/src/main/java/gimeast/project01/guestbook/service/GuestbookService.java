@@ -30,7 +30,7 @@ public class GuestbookService {
                 .page(pageRequest.getPage())
                 .size(pageRequest.getSize())
                 .build()
-                .getPageable(Sort.by("title").descending());
+                .getPageable(Sort.by("id").descending());
 
         return repository.findGuestbooksByCondition(pageable, search);
     }

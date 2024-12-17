@@ -62,7 +62,7 @@ public class GuestbookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> detail(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.ok("success");
     }
