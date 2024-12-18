@@ -1,4 +1,4 @@
-package gimeast.project01.guestbook.entity;
+package gimeast.project01.board.entity;
 
 import gimeast.project01.common.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -6,38 +6,34 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
+@Getter
 @ToString
-public class Guestbook extends BaseEntity {
-
-    protected Guestbook() {}
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String title;
 
-    @Column(length = 1000, nullable = false)
+    @Column(nullable = false)
     private String content;
 
-    @Column(length = 30, nullable = false)
-    private String writer;
-
-    @Builder
-    public Guestbook(String title, String content, String writer) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
-    }
+    //todo: 연관 관계 설정
+    @ManyToOne
+    @ToString.Exclude
+    private User user;
 }

@@ -70,7 +70,7 @@
     </style>
 </head>
 <body>
-<th:block th:replace="~{/guestbook/layout/basic :: setContent(~{this::layout_content})}">
+<th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
 
         <form id="guestbookForm" action="/guestbook/write" class="form-container">

@@ -1,4 +1,4 @@
-package gimeast.project01.guestbook.common;
+package gimeast.project01.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

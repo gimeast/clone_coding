@@ -1,4 +1,4 @@
-package gimeast.project01.guestbook.config;
+package gimeast.project01.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

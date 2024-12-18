@@ -1,4 +1,4 @@
-package gimeast.project01.guestbook.config.interceptor;
+package gimeast.project01.config.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

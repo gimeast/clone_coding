@@ -1,4 +1,4 @@
-package gimeast.project01.guestbook.entity;
+package gimeast.project01.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

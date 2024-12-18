@@ -1,11 +1,8 @@
 package gimeast.project01.guestbook.service;
 
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import gimeast.project01.guestbook.common.PageRequestDTO;
+import gimeast.project01.common.PageRequestDTO;
 import gimeast.project01.guestbook.dto.GuestbookDTO;
 import gimeast.project01.guestbook.entity.Guestbook;
-import gimeast.project01.guestbook.entity.QGuestbook;
 import gimeast.project01.guestbook.mapper.GuestbookMapper;
 import gimeast.project01.guestbook.repository.GuestbookRepository;
 import lombok.RequiredArgsConstructor;

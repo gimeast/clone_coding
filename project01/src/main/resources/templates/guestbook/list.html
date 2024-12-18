@@ -37,7 +37,7 @@
         }
     </style>
 </head>
-<th:block th:replace="~{/guestbook/layout/basic :: setContent(~{this::layout_content})}">
+<th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
 
         <button onclick="location.href='/guestbook/write'">글쓰기</button>

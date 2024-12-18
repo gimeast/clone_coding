@@ -1,6 +1,6 @@
-package gimeast.project01.guestbook.config;
+package gimeast.project01.config;
 
-import gimeast.project01.guestbook.config.interceptor.LoggingInterceptor;
+import gimeast.project01.config.interceptor.LoggingInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
