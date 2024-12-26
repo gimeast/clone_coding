@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .form-container {
+            width: 60%;
+            max-width: 800px;
+            background-color: white;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0077b6;
+            box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #0077b6;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #005f8c;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
+    <th:block th:fragment="layout_content">
+
+        <form id="guestbookForm" class="form-container" th:object="${dto}">
+
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" th:field="*{title}" placeholder="제목을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="writer">작성자</label>
+                <input type="text" id="writer" name="writer" th:field="*{writer}" placeholder="작성자를 입력하세요" th:attrappend="readonly=${dto.id != null ? 'readonly' : ''}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" rows="8" th:field="*{content}" placeholder="내용을 입력하세요" required></textarea>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" id="submitBtn" class="btn-submit" th:text="${dto.id == null ? '작성' : '수정'}"></button>
+            </div>
+        </form>
+
+    </th:block>
+</th:block>
+
+<script th:inline="javascript">
+    // 버튼 클릭 시 폼 데이터를 JSON으로 변환하여 전송
+    document.getElementById('submitBtn').addEventListener('click', async (event) => {
+        event.preventDefault(); // 기본 submit 동작 방지
+
+        const id = [[${dto.id}]];
+
+        const form = document.getElementById('guestbookForm');
+        const URI = '/guestbook/write';
+
+        // 폼 데이터를 객체로 변환
+        const formData = {
+            id: id,
+            title: form.title.value,
+            writer: form.writer.value,
+            content: form.content.value
+        };
+
+        // JSON 데이터를 서버로 전송
+        try {
+            const response = await fetch(URI, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // 요청 성공 처리
+                const returnId = await response.json(); // 서버에서 반환한 ID
+                location.href = `/guestbook/${returnId}`; // 상세 페이지로 이동
+            } else {
+                // 요청 실패 처리
+                const errorData = await response.json();
+                alert(`저장에 실패했습니다: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error('Error: ', error);
+            alert('요청 중 오류가 발생했습니다.');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .target {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{/sample/fragments/fragment2}"></div>
+
+
+<div th:replace="~{/sample/fragments/fragment1 :: part1}"></div>
+<div th:insert="~{/sample/fragments/fragment1 :: part2}"></div>
+<th:block th:replace="~{/sample/fragments/fragment1 :: part3}"></th:block>
+
+
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <td>no</td>
+            <td>id</td>
+            <td>content</td>
+            <td>date</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="memo, state:${pageList}" th:class="${memo.id % 5 == 0} ? 'target'">
+            <td th:text="${(pageList.number * pageList.size) + state.index + 1}"></td>
+            <td th:text="${memo.id}"></td>
+            <td>
+                <a th:href="@{/sample/detail/{id}(id=${memo.id}, memoText=${memo.memoText})}" th:text="${memo.memoText}"></a>
+            </td>
+            <td th:text="${#dates.format(memo.currentDate, 'yyyy/MM/dd')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="pagination">
+    <span th:each="page : ${#numbers.sequence(0, pageList.totalPages - 1)}">
+        <a href="#" th:attr="data-page=${page}" th:text="${page + 1}" class="page-link"></a>
+    </span>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const updateContentAndPagination = (data) => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+
+            // 새로운 콘텐츠와 페이지네이션 요소 선택
+            const newContent = doc.querySelector('#content').innerHTML;
+            const newPagination = doc.querySelector('#pagination').innerHTML;
+
+            // 기존 콘텐츠와 페이지네이션 업데이트
+            document.getElementById('content').innerHTML = newContent;
+            document.getElementById('pagination').innerHTML = newPagination;
+
+            // 새로 생성된 페이지 링크에 이벤트 리스너 설정
+            setupPaginationListeners();
+        };
+
+        const setupPaginationListeners = () => {
+            const pageLinks = document.querySelectorAll('.page-link');
+            pageLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageNumber = link.getAttribute('data-page');
+
+                    // Fetch API를 사용하여 새로운 페이지 가져오기
+                    fetch(`/sample/ex1?pageNumber=${pageNumber}&pageSize=10`)
+                        .then(response => response.text())
+                        .then(updateContentAndPagination)
+                        .catch(error => console.error('데이터를 불러오는 중 오류 발생:', error));
+                });
+            });
+        };
+
+        setupPaginationListeners(); // 초기 페이지 링크 리스너 설정
+    });
+</script>
+</body>
+</html>

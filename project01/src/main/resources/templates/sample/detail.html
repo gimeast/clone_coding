@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="~{/sample/fragments/fragment3::target(~{this::#first}, ~{this::#second})}">
+    <ul>
+        <li id="first">[[${id}]]</li>
+        <li id="second">[[${memoText}]]</li>
+    </ul>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto; /* 테이블 자체를 가운데 정렬 */
+            font-size: 1.1rem;
+            table-layout: fixed; /* 열 너비 고정 */;
+            border: 1px solid #ddd;
+        }
+
+        table th, table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f1f3f5;
+            font-weight: bold;
+        }
+
+        table tbody tr:hover {
+            background-color: #dbe9f1;
+        }
+
+        .truncate {
+            max-width: 200px; /* 최대 너비 */
+            white-space: nowrap; /* 한 줄로 보여줌 */
+            overflow: hidden; /* 넘친 내용을 숨김 */
+            text-overflow: ellipsis; /* "..." 처리 */
+        }
+    </style>
+</head>
+<th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
+    <th:block th:fragment="layout_content">
+
+        <button onclick="location.href='/board/write'">글쓰기</button>
+
+        <div id="data-container" style="max-width: 1200px; margin: 0 auto;">
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Writer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto,state : ${pageList.content}" th:attr="data-href=@{/board/{id}(id=${dto.boardDTO.id})}"
+                    style="cursor:pointer;"
+                    th:onclick="|location.href=this.getAttribute('data-href')|">
+                    <td th:text="${(pageList.number * pageList.size) + state.index + 1}"></td>
+
+                    <td class="truncate" th:text="|${dto.boardDTO.title} [${dto.cnt}]|"></td>
+                    <td class="truncate" th:text="${dto.boardDTO.userId}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Search -->
+        <form th:action="@{/board/list}" method="get">
+            <select name="size">
+                <option value="10" th:selected="${pageRequest.size == 10}">10</option>
+                <option value="20" th:selected="${pageRequest.size == 20}">20</option>
+                <option value="30" th:selected="${pageRequest.size == 30}">30</option>
+                <option value="50" th:selected="${pageRequest.size == 50}">50</option>
+                <option value="100" th:selected="${pageRequest.size == 100}">100</option>
+            </select>
+            <input type="text" id="search" name="search" th:value="${search}" placeholder="제목/내용">
+            <button type="submit">검색</button>
+        </form>
+
+        <!-- Pagination -->
+        <div id="pagination"
+             th:attr="
+             data-total-pages=${pageList.totalPages},
+                data-current-page=${pageList.number + 1},
+                data-size=${pageRequest.size}">
+        </div>
+    </th:block>
+
+</th:block>
+
+<script type="module">
+    import { setupPagination } from '/js/pagination.js';
+
+    const URI = '/board/list'; // API 엔드포인트
+    const search = document.getElementById('search').value;
+
+    setupPagination('pagination', URI, search);
+</script>
+</html>
