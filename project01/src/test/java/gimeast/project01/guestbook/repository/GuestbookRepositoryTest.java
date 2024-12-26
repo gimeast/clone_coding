@@ -54,8 +54,7 @@ public class GuestbookRepositoryTest {
 
         try {
             repository.findById(299L).ifPresent(guestbook -> {
-                guestbook.setTitle("update title");
-                guestbook.setContent("update content");
+                guestbook.changeTitleWithContent("update title", "update content");
             });
 
             transactionManager.commit(status);
@@ -71,8 +70,7 @@ public class GuestbookRepositoryTest {
     @Commit
     void updateTest2() {
         repository.findById(300L).ifPresent(guestbook -> {
-            guestbook.setTitle("update...");
-            guestbook.setContent("update...");
+            guestbook.changeTitleWithContent("update title", "update content");
         });
     }
 

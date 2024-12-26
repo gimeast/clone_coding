@@ -30,7 +30,6 @@ public class Reply extends BaseEntity {
     @Column(nullable = false)
     private String text;
 
-    //todo: 연관 관계 설정
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private User user;

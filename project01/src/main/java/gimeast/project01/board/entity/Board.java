@@ -39,7 +39,6 @@ public class Board extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    //todo: 연관 관계 설정
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
@@ -47,6 +46,7 @@ public class Board extends BaseEntity {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
+    @Builder.Default
     private List<Reply> replies = new ArrayList<>();
 
     public void changeTitleWithContent(String title, String content) {
