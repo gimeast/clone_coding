@@ -36,13 +36,8 @@ public class UploadController {
             return ResponseEntity.ok(uploadResultDTOList);
         }
     }
-
-    @GetMapping("/upload")
-    public void upload() {
-
-    }
     
-    @PostMapping("/files/delete")
+    @PostMapping("/file/delete")
     public ResponseEntity<Boolean> removeFiles(@RequestBody FileDeleteDTO fileDeleteDTO) {
         boolean deleteStatus = fileUtils.deleteFiles(fileDeleteDTO.getFileName());
 

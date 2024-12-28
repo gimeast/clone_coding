@@ -43,4 +43,9 @@ public class SampleController {
     public void layout() {
 
     }
+
+    @GetMapping("/upload")
+    public void upload() {
+
+    }
 }

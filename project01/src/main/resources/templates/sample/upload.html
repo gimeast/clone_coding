@@ -57,7 +57,7 @@
                     console.log("formData: ", formData);
 
                     // 파일 업로드 API 호출
-                    const response = await fetch('/movie/files/delete', {
+                    const response = await fetch('/movie/file/delete', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify(formData)
