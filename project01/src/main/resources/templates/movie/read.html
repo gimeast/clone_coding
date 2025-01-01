@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* 페이지 배경 */
+        }
+
+        .form-container {
+            width: 70%;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            overflow: auto;
+        }
+
+        .form-group {
+            max-height: 500px;  /* 적절한 높이를 설정하세요 */
+            overflow-y: auto;  /* 수직 방향으로 스크롤이 필요한 경우 스크롤바 생성 */
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            display: flex; /* 이미지 가로 정렬 */
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        ul li {
+            margin-right: 1rem;
+        }
+
+        ul li img {
+            width: 120px; /* 썸네일 이미지 크기 */
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover; /* 이미지 비율 보존하며 잘라내기 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul li:last-child {
+            margin-right: 0; /* 마지막 이미지는 마진을 제거 */
+        }
+
+        .form-container button {
+            margin-top: 1rem;
+            padding: 0.7rem 2rem;
+            background-color: #0077b6;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #005f85;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
+    <th:block th:fragment="layout_content">
+
+        <form id="form" class="form-container">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" th:value="${dto.title}">
+            </div>
+
+            <div class="form-group">
+                <label for="grade">작성자</label>
+                <input type="text" id="grade" name="grade" th:value="${dto.grade}">
+            </div>
+
+            <div class="form-group">
+                <label for="reviewCount">내용</label>
+                <input type="text" id="reviewCount" name="reviewCount" th:value="${dto.reviewCount}">
+            </div>
+
+            <div class="form-group">
+                <ul>
+                    <li th:each="uploadResultDTO : ${dto.uploadResultDTO}">
+                        <img th:src="|/display?fileName=${uploadResultDTO.thumbnailURL}|" alt="poster">
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+    </th:block>
+</th:block>
+
+</body>
+</html>

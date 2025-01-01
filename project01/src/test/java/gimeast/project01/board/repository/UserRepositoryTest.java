@@ -19,9 +19,9 @@ class UserRepositoryTest {
     void createUser() {
         //given
         User user = User.builder()
-                .userId("nomad2")
+                .userId("tester2")
                 .password("123")
-                .name("노마드")
+                .name("Mr리")
                 .mobile("01000000000")
                 .build();
 
@@ -29,7 +29,7 @@ class UserRepositoryTest {
         userRepository.save(user);
         
         //then
-        User findUser = userRepository.findByUserId("nomad").stream()
+        User findUser = userRepository.findByUserId("tester1").stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 

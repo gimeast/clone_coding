@@ -4,6 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import gimeast.project01.common.QUploadResultDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;
 import gimeast.project01.mreview.dto.QMovieListDTO;
 import gimeast.project01.mreview.entity.QMovie;
@@ -44,7 +45,8 @@ public class MovieCustomRepositoryImpl implements MovieCustomRepository {
                 .where(subImage.movie.eq(movie));
 
         List<MovieListDTO> fetch = queryFactory
-                .select(new QMovieListDTO(movie.id, movie.title, review.grade.avg().intValue(), review.count().intValue(), image.uuid, image.imgName, image.path))
+                .select(new QMovieListDTO(movie.id, movie.title, review.grade.avg().floatValue(), review.count().intValue(),
+                        new QUploadResultDTO(image.imgName, image.uuid, image.path)))
                 .from(movie)
                 .leftJoin(review).on(review.movie.eq(movie))
                 .leftJoin(image).on(image.movie.eq(movie).and(image.regDate.eq(latestImageSubQuery)))
