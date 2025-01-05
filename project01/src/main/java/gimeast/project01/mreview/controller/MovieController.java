@@ -3,14 +3,17 @@ package gimeast.project01.mreview.controller;
 import gimeast.project01.common.PageRequestDTO;
 import gimeast.project01.mreview.dto.MovieDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;
+import gimeast.project01.mreview.dto.ReviewDTO;
 import gimeast.project01.mreview.service.MovieService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/movie")
 @RequiredArgsConstructor
+@Slf4j
 public class MovieController {
 
     private final MovieService movieService;
@@ -49,6 +53,18 @@ public class MovieController {
     public void read(Long id, Model model) {
         MovieDTO movieDTO = movieService.getMovieWithAll(id);
         model.addAttribute("dto", movieDTO);
+    }
+
+    @PostMapping("/review")
+    public ResponseEntity<Long> saveReview(@RequestBody ReviewDTO reviewDTO) {
+        log.info("reviewDTO: {}", reviewDTO);
+        Long id = movieService.saveReview(reviewDTO);
+
+        if (id > 0) {
+            return ResponseEntity.ok(id);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }

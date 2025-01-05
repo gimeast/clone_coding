@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/styles.css"/>
-
 </head>
 <th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
@@ -21,8 +20,10 @@
                     <th>댓글수</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="dto,state : ${pageList.content}">
+                <tbody style="cursor: pointer">
+                <tr th:each="dto,state : ${pageList.content}"
+                    th:attr="data-href=@{/movie/read(id=${dto.id})}"
+                    th:onclick="|location.href=this.getAttribute('data-href')|">
                     <td>
                         <img th:src="|/display?fileName=${dto.uploadResultDTO.thumbnailURL}|" alt="poster" width="100px">
                     </td>

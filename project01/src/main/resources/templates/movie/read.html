@@ -82,26 +82,33 @@
         .form-container button:hover {
             background-color: #005f85;
         }
+
+        .form-container input {
+            pointer-events: none;
+            background-color: #f3f3f3;
+            color: #888;
+            border-color: #ddd;
+        }
     </style>
 </head>
 <body>
 <th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
 
-        <form id="form" class="form-container">
+        <div id="form" class="form-container">
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" id="title" name="title" th:value="${dto.title}">
             </div>
 
             <div class="form-group">
-                <label for="grade">작성자</label>
-                <input type="text" id="grade" name="grade" th:value="${dto.grade}">
+                <label for="reviewCount">ReviewCount</label>
+                <input type="text" id="reviewCount" name="reviewCount" th:value="${dto.reviewCount}">
             </div>
 
             <div class="form-group">
-                <label for="reviewCount">내용</label>
-                <input type="text" id="reviewCount" name="reviewCount" th:value="${dto.reviewCount}">
+                <label for="grade">별점</label>
+                <input type="text" id="grade" name="grade" th:value="${dto.grade}">
             </div>
 
             <div class="form-group">
@@ -111,7 +118,10 @@
                     </li>
                 </ul>
             </div>
-        </form>
+            <div class="form-group">
+                <th:block th:replace="~{/movie/review}"/>
+            </div>
+        </div>
 
     </th:block>
 </th:block>

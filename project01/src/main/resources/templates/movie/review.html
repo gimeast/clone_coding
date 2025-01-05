@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 등록</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* styles.css */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .modal {
+        display: none; /* 초기에는 숨김 처리 */
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 400px;
+        position: relative;
+        text-align: center;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    button[type="submit"] {
+        background-color: #28a745;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+    #email {
+        pointer-events: auto; /* 입력 가능하게 설정 */
+        background-color: #fff; /* 자유롭게 입력 가능하도록 배경 변경 */
+        color: #000; /* 텍스트 색상 변경 */
+        border-color: #ccc; /* 기본 상태 스타일 */
+    }
+</style>
+<body>
+<button id="openModalBtn">리뷰작성하기</button>
+
+<!-- 모달 -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="closeModalBtn"></span>
+        <h2>리뷰 등록</h2>
+        <form id="reviewForm">
+            <div>
+                <label for="email">사용자 아이디:</label>
+                <input type="text" id="email" name="email" placeholder="아이디 입력" required/>
+            </div>
+            <div>
+                <label for="stars">별점:</label>
+                <select id="stars" name="stars" required>
+                    <option th:each="i : ${#numbers.sequence(5,1)}"
+                            th:value="${i}"
+                            th:text="${'★'.repeat(i)}">
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label for="text">내용:</label>
+                <textarea id="text" name="text" rows="4" placeholder="리뷰 내용을 작성하세요." required></textarea>
+            </div>
+            <div>
+                <button id="submitBtn">등록</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // script.js
+    document.addEventListener("DOMContentLoaded", () => {
+        const openModalBtn = document.getElementById("openModalBtn");
+        const reviewModal = document.getElementById("reviewModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const reviewForm = document.getElementById("reviewForm");
+
+        // 모달 열기
+        openModalBtn.addEventListener("click", () => {
+            reviewModal.style.display = "flex";
+        });
+
+        // 모달 닫기
+        closeModalBtn.addEventListener("click", () => {
+            reviewModal.style.display = "none";
+        });
+
+        // 모달 외부 클릭 시 닫기
+        window.addEventListener("click", (event) => {
+            if (event.target === reviewModal) {
+                reviewModal.style.display = "none";
+            }
+        });
+
+        // 폼 제출 이벤트 처리
+        document.getElementById('submitBtn').addEventListener('click', async (event) => {
+            event.preventDefault(); // 페이지 리로드 방지
+
+            // 폼 데이터 가져오기
+            const email = document.getElementById("email").value;
+            const grade = document.getElementById("stars").value;
+            const text = document.getElementById("text").value;
+            const movieId = [[${dto.id}]];
+
+            const URI = '/movie/review';
+
+            const formData = {movieId, email, grade, text};
+
+            try {
+                const response = await fetch(URI, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    // 제출 후 초기화
+                    alert("리뷰가 등록되었습니다!");
+                    location.reload();
+                } else {
+                    // 요청 실패 처리
+                    const errorData = await response.json();
+                    alert(`저장에 실패했습니다: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error: ', error);
+                alert('요청 중 오류가 발생했습니다.');
+            }
+
+        });
+    });
+</script>
+</body>
+</html>

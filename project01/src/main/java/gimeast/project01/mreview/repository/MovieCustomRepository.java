@@ -6,5 +6,4 @@ import org.springframework.data.domain.Pageable;
 
 public interface MovieCustomRepository {
     Page<MovieListDTO> findMovieWithGradeAndReviewCount(Pageable pageable, String search);
-//    MovieDTO getMovieWithAll(Long id);
 }

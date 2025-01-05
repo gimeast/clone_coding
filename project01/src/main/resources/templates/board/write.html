@@ -60,7 +60,6 @@
             font-size: 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #f9f9f9;
             color: #333;
             box-sizing: border-box;
             transition: all 0.3s ease;
@@ -101,7 +100,7 @@
 
             <div class="form-group">
                 <label for="userId">작성자</label>
-                <select id="userId" name="userId" th:field="*{userId}" th:disabled="${dto.id != null}" required>
+                <select id="memberId" name="userId" th:field="*{userId}" th:disabled="${dto.id != null}" required>
                     <option th:each="userId : ${allUserIds}" th:value="${userId}" th:text="${userId}"></option>
                 </select>
             </div>
