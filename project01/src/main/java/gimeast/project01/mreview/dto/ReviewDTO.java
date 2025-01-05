@@ -12,4 +12,11 @@ public class ReviewDTO {
 
     private Long movieId;
     private String email;
+
+    public ReviewDTO(Long id, double grade, String text, String email) {
+        this.id = id;
+        this.grade = grade;
+        this.text = text;
+        this.email = email;
+    }
 }

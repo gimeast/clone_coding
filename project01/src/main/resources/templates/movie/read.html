@@ -4,72 +4,119 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        /* 기본 설정 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9; /* 페이지 배경 */
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* form-container */
         .form-container {
-            width: 70%;
+            width: 80%;
             margin: 2rem auto;
             background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            overflow: auto;
         }
 
-        .form-group {
-            max-height: 500px;  /* 적절한 높이를 설정하세요 */
-            overflow-y: auto;  /* 수직 방향으로 스크롤이 필요한 경우 스크롤바 생성 */
+        .form-title {
+            font-size: 1.8rem;
+            color: #0077b6;
+            margin-bottom: 1rem;
+        }
+
+        /* 정보 섹션 스타일 */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 1.5rem;
         }
 
-        label {
+        .info {
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .info label {
             display: block;
-            font-size: 1rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .info span {
+            font-size: 1.2rem;
             color: #333;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 0.7rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        ul {
-            display: flex; /* 이미지 가로 정렬 */
-            list-style-type: none;
+        /* 이미지 섹션 */
+        .images ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
             padding: 0;
             margin: 1rem 0;
         }
 
-        ul li {
+        .images ul li {
             margin-right: 1rem;
+            margin-bottom: 1rem;
         }
 
-        ul li img {
-            width: 120px; /* 썸네일 이미지 크기 */
-            height: 120px;
+        .images ul li img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
-            object-fit: cover; /* 이미지 비율 보존하며 잘라내기 */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        ul li:last-child {
-            margin-right: 0; /* 마지막 이미지는 마진을 제거 */
+        /* 리뷰 섹션 */
+        .reviews h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .form-container button {
-            margin-top: 1rem;
+        .reviews ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reviews ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .review {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .review p {
+            margin: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .review p strong {
+            color: #005f85;
+        }
+
+        /* 버튼 hover */
+        button {
+            display: inline-block;
             padding: 0.7rem 2rem;
             background-color: #0077b6;
             color: white;
@@ -77,52 +124,110 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
-        .form-container button:hover {
+        button:hover {
             background-color: #005f85;
         }
 
-        .form-container input {
-            pointer-events: none;
-            background-color: #f3f3f3;
-            color: #888;
-            border-color: #ddd;
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info {
+                margin: 0 0 1rem 0;
+            }
+
+            .images ul {
+                justify-content: center;
+            }
+
+            .images ul li {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .button-container {
+            display: flex; /* 플렉스박스 활용 */
+            justify-content: flex-end; /* 오른쪽 정렬 */
+            margin-top: 1rem; /* 위쪽 여백 */
+        }
+
+        .button-container button {
+            padding: 0.7rem 2rem;
+            background-color: #0077b6;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .button-container button:hover {
+            background-color: #005f85;
         }
     </style>
 </head>
 <body>
 <th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
+        <div class="form-container">
 
-        <div id="form" class="form-container">
+            <!-- 제목 -->
             <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" id="title" name="title" th:value="${dto.title}">
+                <h2 th:text="${dto.title}" class="form-title">영화 제목</h2>
             </div>
 
-            <div class="form-group">
-                <label for="reviewCount">ReviewCount</label>
-                <input type="text" id="reviewCount" name="reviewCount" th:value="${dto.reviewCount}">
+            <!-- 리뷰 정보 -->
+            <div class="form-row">
+                <div class="info">
+                    <label>리뷰 수</label>
+                    <span th:text="${dto.reviewCount}">10</span>
+                </div>
+                <div class="info">
+                    <label>평균 별점</label>
+                    <span th:text="${dto.grade}">4.5</span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="grade">별점</label>
-                <input type="text" id="grade" name="grade" th:value="${dto.grade}">
-            </div>
-
-            <div class="form-group">
+            <!-- 이미지 섹션 -->
+            <div class="form-group images">
+                <h3>포스터 이미지</h3>
                 <ul>
-                    <li th:each="uploadResultDTO : ${dto.uploadResultDTO}">
+                    <li th:each="uploadResultDTO : ${dto.uploadResultDTOList}">
                         <img th:src="|/display?fileName=${uploadResultDTO.thumbnailURL}|" alt="poster">
                     </li>
                 </ul>
             </div>
-            <div class="form-group">
+
+            <div class="form-group button-container">
                 <th:block th:replace="~{/movie/review}"/>
             </div>
-        </div>
 
+            <!-- 리뷰 섹션 -->
+            <div class="reviews">
+                <h3>리뷰 목록</h3>
+                <div id="reviews">
+                    <ul>
+                        <li th:each="review : ${dto.reviewDTOList}">
+                            <div class="review">
+                                <p><strong th:text="${review.email}">작성자 이메일</strong></p>
+                                <p th:text="${review.text}">리뷰 내용이 여기에 표시됩니다.</p>
+                                <p>별점: <span th:text="${review.grade}"></span></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
     </th:block>
 </th:block>
 

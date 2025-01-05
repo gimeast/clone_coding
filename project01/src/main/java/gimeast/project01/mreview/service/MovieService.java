@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -63,7 +62,10 @@ public class MovieService {
         MovieDTO movieDTO = movieRepository.findMovieById(id);
 
         List<UploadResultDTO> uploadResultDTOList = movieImageRepository.findAllByMovieId(id);
-        movieDTO.setUploadResultDTO(uploadResultDTOList);
+        movieDTO.setUploadResultDTOList(uploadResultDTOList);
+
+        List<ReviewDTO> reviewDTOList = reviewRepository.findAllByMovieId(id);
+        movieDTO.setReviewDTOList(reviewDTOList);
 
         return movieDTO;
     }

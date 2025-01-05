@@ -1,6 +1,5 @@
 package gimeast.project01.mreview.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
 import gimeast.project01.common.UploadResultDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,8 @@ public class MovieDTO {
     private float grade;
     private int reviewCount;
 
-    private List<UploadResultDTO> uploadResultDTO = new ArrayList<>();
+    private List<UploadResultDTO> uploadResultDTOList = new ArrayList<>();
+    private List<ReviewDTO> reviewDTOList = new ArrayList<>();
 
     public MovieDTO(Long id, String title, float grade, int reviewCount) {
         this.id = id;
