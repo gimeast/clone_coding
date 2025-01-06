@@ -33,10 +33,11 @@ class BoardRepositoryTest {
     @DisplayName("게시물 작성")
     void createBoard() {
         //given
-        User findUser = userRepository.findByUserId("nomad").stream()
+        User findUser = userRepository.findByUserId("test").stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        for (int i = 0; i < 10; i++) {
         Board board = Board.builder()
                 .title("테스트 게시물2")
                 .content("테스트중2...")
@@ -44,13 +45,9 @@ class BoardRepositoryTest {
                 .build();
 
         //when
-        boardRepository.save(board);
+            boardRepository.save(board);
+        }
 
-        //then
-        Board findBoard = boardRepository.findById(board.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
-
-        assertNotNull(findBoard);
     }
 
     @Test

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/styles.css"/>
     <style>
         /* 기본 설정 */
         body {
@@ -173,38 +174,60 @@
         .button-container button:hover {
             background-color: #005f85;
         }
+
+        /*페이징 css*/
+        #pagination-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #pageNumbers button {
+            background-color: #ddd;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #pageNumbers button.active {
+            background-color: #0077b6;
+            color: #ddd;
+            border: 1px solid #0077b6;
+        }
+
+        #pagination-container button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
 <th:block th:replace="~{/common/layout/basic :: setContent(~{this::layout_content})}">
     <th:block th:fragment="layout_content">
         <div class="form-container">
-
             <!-- 제목 -->
             <div class="form-group">
-                <h2 th:text="${dto.title}" class="form-title">영화 제목</h2>
+                <h2 id="title" class="form-title">영화 제목</h2>
             </div>
 
             <!-- 리뷰 정보 -->
             <div class="form-row">
                 <div class="info">
                     <label>리뷰 수</label>
-                    <span th:text="${dto.reviewCount}">10</span>
+                    <span id="reviewCount"></span>
                 </div>
                 <div class="info">
                     <label>평균 별점</label>
-                    <span th:text="${dto.grade}">4.5</span>
+                    <span id="grade"></span>
                 </div>
             </div>
 
             <!-- 이미지 섹션 -->
             <div class="form-group images">
                 <h3>포스터 이미지</h3>
-                <ul>
-                    <li th:each="uploadResultDTO : ${dto.uploadResultDTOList}">
-                        <img th:src="|/display?fileName=${uploadResultDTO.thumbnailURL}|" alt="poster">
-                    </li>
-                </ul>
+                <ul id="uploadResultDTOList"></ul>
             </div>
 
             <div class="form-group button-container">
@@ -212,23 +235,110 @@
             </div>
 
             <!-- 리뷰 섹션 -->
-            <div class="reviews">
-                <h3>리뷰 목록</h3>
-                <div id="reviews">
-                    <ul>
-                        <li th:each="review : ${dto.reviewDTOList}">
-                            <div class="review">
-                                <p><strong th:text="${review.email}">작성자 이메일</strong></p>
-                                <p th:text="${review.text}">리뷰 내용이 여기에 표시됩니다.</p>
-                                <p>별점: <span th:text="${review.grade}"></span></p>
-                            </div>
-                        </li>
-                    </ul>
+            <div id="data-container">
+                <div class="reviews">
+                    <h3>리뷰 목록</h3>
+                    <div id="reviews">
+                            <ul></ul>
+                    </div>
                 </div>
             </div>
 
+            <div id="pagination-container">
+                <button id="firstPage" disabled>&laquo;</button> <!-- 처음 -->
+                <button id="prevPage" disabled>이전</button> <!-- 이전 -->
+                <div id="pageNumbers">
+                    <!-- 페이지 번호들이 동적으로 생성됩니다 -->
+                </div>
+                <button id="nextPage">다음</button> <!-- 다음 -->
+                <button id="lastPage" disabled>&raquo;</button> <!-- 끝 -->
+            </div>
+
         </div>
+
     </th:block>
 </th:block>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        try {
+            const URI = '/movie/detail';
+            const queryParam = `?id=[[${movieId}]]`;
+            const response = await fetch(URI + queryParam, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if(response.ok) {
+                const json = await response.json();
+
+                // 응답 데이터를 DOM 요소에 삽입
+                document.getElementById('title').textContent = json.title || '제목 없음';
+                document.getElementById('reviewCount').textContent = json.reviewCount || '0';
+                document.getElementById('grade').textContent = json.grade || '0';
+
+                // uploadResultDTOList 데이터와 이미지 추가
+                const uploadResultList = document.getElementById('uploadResultDTOList');
+                uploadResultList.innerHTML = ''; // 기존 내용을 초기화
+
+                const uploadResultDTOList = json.uploadResultDTOList || []; // 서버에서 가져온 이미지 데이터 배열
+
+                uploadResultDTOList.forEach(uploadResultDTO => {
+                    // <li> 태그 생성
+                    const li = document.createElement('li');
+
+                    // <img> 태그 생성
+                    const img = document.createElement('img');
+                    img.src = `/display?fileName=${uploadResultDTO.thumbnailURL}`; // 이미지 경로 설정
+                    img.alt = 'poster'; // alt 텍스트 설정
+
+                    li.appendChild(img); // <li>에 <img> 추가
+                    uploadResultList.appendChild(li); // <ul>에 <li> 추가
+                });
+            } else {
+                console.log('bad request');
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    });
+</script>
+
+<script src="/js/common.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initPagination('/movie/review', {
+            pageSize: 10,
+            maxPageButtons: 10,
+            id:[[${movieId}]]
+        }, function renderReviews(data) {
+            if (data.length === 0) {
+                console.log('No reviews found');
+            } else {
+                console.log('Review data:', data);
+            }
+
+            const reviewsList = document.querySelector('#reviews ul');
+            reviewsList.innerHTML = ''; // 기존 데이터 초기화
+
+            // 데이터 렌더링
+            data.forEach(review => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                <div class="review">
+                    <p><strong>${review.email || '작성자 없음'}</strong></p>
+                    <p>${review.text || '리뷰 내용이 없습니다.'}</p>
+                    <p>별점: <span>${review.grade || 0}</span></p>
+                </div>`;
+                reviewsList.appendChild(li);
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

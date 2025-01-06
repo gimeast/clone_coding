@@ -54,12 +54,6 @@ public class MovieController {
         model.addAttribute("pageRequest", pageRequest);
     }
 
-    @GetMapping("/read")
-    public void read(Long id, Model model) {
-        MovieDTO movieDTO = movieService.getMovieWithAll(id);
-        model.addAttribute("dto", movieDTO);
-    }
-
     @PostMapping("/review")
     public ResponseEntity<Long> saveReview(@RequestBody ReviewDTO reviewDTO) {
         Long id = movieService.saveReview(reviewDTO);
@@ -71,4 +65,8 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/read")
+    public void read(Long id, Model model) {
+        model.addAttribute("movieId", id);
+    }
 }

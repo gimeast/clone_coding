@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>리뷰 등록</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <style>
     /* styles.css */
@@ -126,7 +125,6 @@
         const openModalBtn = document.getElementById("openModalBtn");
         const reviewModal = document.getElementById("reviewModal");
         const closeModalBtn = document.getElementById("closeModalBtn");
-        const reviewForm = document.getElementById("reviewForm");
 
         // 모달 열기
         openModalBtn.addEventListener("click", () => {
@@ -153,7 +151,7 @@
             const email = document.getElementById("email").value;
             const grade = document.getElementById("stars").value;
             const text = document.getElementById("text").value;
-            const movieId = [[${dto.id}]];
+            const movieId = [[${movieId}]];
 
             const URI = '/movie/review';
 

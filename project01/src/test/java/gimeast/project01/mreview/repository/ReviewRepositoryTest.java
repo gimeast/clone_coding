@@ -20,8 +20,8 @@ class ReviewRepositoryTest {
     @DisplayName("더미데이터 생성")
     void createDummyData() {
         IntStream.rangeClosed(1, 200).forEach(i -> {
-            long movieId = (long) (Math.random() * 37) + 1;
-            long memberId = (long) (Math.random() * 100) + 1;
+            long movieId = 3;
+            long memberId = 2;
 
             Movie movie = Movie.builder().id(movieId).build();
             Member member = Member.builder().id(memberId).build();

@@ -16,6 +16,7 @@ import gimeast.project01.mreview.repository.MovieRepository;
 import gimeast.project01.mreview.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,6 +71,15 @@ public class MovieService {
         return movieDTO;
     }
 
+    public MovieDTO getMovie(Long id) {
+        MovieDTO movieDTO = movieRepository.findMovieById(id);
+
+        List<UploadResultDTO> uploadResultDTOList = movieImageRepository.findAllByMovieId(id);
+        movieDTO.setUploadResultDTOList(uploadResultDTOList);
+
+        return movieDTO;
+    }
+
     @Transactional
     public Long saveReview(ReviewDTO reviewDTO) {
         Movie movie = movieRepository.findById(reviewDTO.getMovieId()).orElseThrow();
@@ -85,5 +95,9 @@ public class MovieService {
         reviewRepository.save(review);
 
         return review.getId();
+    }
+
+    public Page<ReviewDTO> getReviewList(Long id, PageRequestDTO pageRequestDTO) {
+        return reviewRepository.findAllByMovieId(id, pageRequestDTO.getPageable(Sort.by("id").descending()));
     }
 }
