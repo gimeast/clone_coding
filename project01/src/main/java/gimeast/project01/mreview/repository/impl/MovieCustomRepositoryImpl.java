@@ -1,4 +1,4 @@
-package gimeast.project01.mreview.repository;
+package gimeast.project01.mreview.repository.impl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPAExpressions;
@@ -10,6 +10,7 @@ import gimeast.project01.mreview.dto.QMovieListDTO;
 import gimeast.project01.mreview.entity.QMovie;
 import gimeast.project01.mreview.entity.QMovieImage;
 import gimeast.project01.mreview.entity.QReview;
+import gimeast.project01.mreview.repository.MovieCustomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

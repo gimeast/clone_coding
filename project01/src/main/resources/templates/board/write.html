@@ -99,7 +99,7 @@
             </div>
 
             <div class="form-group">
-                <label for="userId">작성자</label>
+                <label for="memberId">작성자</label>
                 <select id="memberId" name="userId" th:field="*{userId}" th:disabled="${dto.id != null}" required>
                     <option th:each="userId : ${allUserIds}" th:value="${userId}" th:text="${userId}"></option>
                 </select>
