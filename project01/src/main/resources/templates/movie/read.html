@@ -247,9 +247,7 @@
             <div id="pagination-container">
                 <button id="firstPage" disabled>&laquo;</button> <!-- 처음 -->
                 <button id="prevPage" disabled>이전</button> <!-- 이전 -->
-                <div id="pageNumbers">
-                    <!-- 페이지 번호들이 동적으로 생성됩니다 -->
-                </div>
+                <div id="pageNumbers"></div>
                 <button id="nextPage">다음</button> <!-- 다음 -->
                 <button id="lastPage" disabled>&raquo;</button> <!-- 끝 -->
             </div>
@@ -316,11 +314,6 @@
             maxPageButtons: 10,
             id:[[${movieId}]]
         }, function renderReviews(data) {
-            if (data.length === 0) {
-                console.log('No reviews found');
-            } else {
-                console.log('Review data:', data);
-            }
 
             const reviewsList = document.querySelector('#reviews ul');
             reviewsList.innerHTML = ''; // 기존 데이터 초기화

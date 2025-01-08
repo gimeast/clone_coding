@@ -53,25 +53,29 @@ async function initPagination(fetchUrl, options, renderDataCallback) {
      * @param {number} total - 전체 페이지 수
      */
     function renderPagination(current, total) {
-        currentPage = current; // 현재 페이지를 업데이트
-        pageNumbers.innerHTML = ''; // 페이지 번호 초기화
+        currentPage = current;
+        pageNumbers.innerHTML = '';
 
-        // 데이터 없는 경우 버튼 비활성화
+        // 데이터 없는 경우 모든 버튼 비활성화
         if (total === 0) {
             disableAllPaginationButtons();
             return;
         }
 
-        const startPage = Math.floor((current - 1) / maxPageButtons) * maxPageButtons + 1;
-        const endPage = Math.min(startPage + maxPageButtons - 1, total);
+        // 현재 페이지 범위 계산
+        const currentRangeStart = Math.floor((current - 1) / pageSize) * pageSize + 1;
+        const currentRangeEnd = Math.min(currentRangeStart + pageSize - 1, total);
 
-        // 버튼 활성화/비활성화
-        firstPageButton.disabled = current === 1;
-        prevPageButton.disabled = current === 1;
-        nextPageButton.disabled = current === total;
-        lastPageButton.disabled = current === total;
+        // 이전/다음 버튼 활성화/비활성화 조건
+        firstPageButton.disabled = current <= 1;
+        prevPageButton.disabled = current <= pageSize;
+        nextPageButton.disabled = currentRangeEnd >= total;
+        lastPageButton.disabled = current >= total;
 
-        // 동적으로 페이지 번호 렌더링
+        // 페이지 번호 렌더링 (이전 코드와 동일)
+        const startPage = Math.max(1, currentRangeStart);
+        const endPage = Math.min(total, currentRangeEnd);
+
         for (let i = startPage; i <= endPage; i++) {
             const button = document.createElement('button');
             button.textContent = i;
@@ -93,13 +97,24 @@ async function initPagination(fetchUrl, options, renderDataCallback) {
     }
 
     // 각 버튼에 이벤트 리스너 추가
-    firstPageButton.addEventListener('click', () => fetchData(1)); // 처음 페이지 이동
+    firstPageButton.addEventListener('click', () => fetchData(1)); // 처음 페이지로 이동
+
+    // 이전 버튼 클릭 시
     prevPageButton.addEventListener('click', () => {
-        if (currentPage > 1) fetchData(currentPage - 1); // 이전 페이지로
+        const firstPageInPreviousRange = Math.floor((currentPage - 1) / pageSize) * pageSize - (pageSize - 1);
+        if (firstPageInPreviousRange > 0) {
+            fetchData(firstPageInPreviousRange); // 이전 범위의 첫 번째 페이지로 이동
+        }
     });
+
+    // 다음 버튼 클릭 시
     nextPageButton.addEventListener('click', () => {
-        if (currentPage < totalPages) fetchData(currentPage + 1); // 다음 페이지로
+        const firstPageInNextRange = Math.floor((currentPage - 1) / pageSize) * pageSize + pageSize + 1;
+        if (firstPageInNextRange <= totalPages) {
+            fetchData(firstPageInNextRange); // 다음 범위의 첫 번째 페이지로 이동
+        }
     });
+
     lastPageButton.addEventListener('click', () => fetchData(totalPages)); // 마지막 페이지로 이동
 
     // 초기 데이터 로드
