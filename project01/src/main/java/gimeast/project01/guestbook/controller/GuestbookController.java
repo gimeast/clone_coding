@@ -1,6 +1,6 @@
 package gimeast.project01.guestbook.controller;
 
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.guestbook.dto.GuestbookDTO;
 import gimeast.project01.guestbook.repository.GuestbookRepository;
 import gimeast.project01.guestbook.service.GuestbookService;

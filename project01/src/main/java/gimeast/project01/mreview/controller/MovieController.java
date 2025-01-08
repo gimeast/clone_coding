@@ -1,7 +1,6 @@
 package gimeast.project01.mreview.controller;
 
-import gimeast.project01.common.PageRequestDTO;
-import gimeast.project01.mreview.dto.MovieDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;
 import gimeast.project01.mreview.dto.ReviewDTO;
 import gimeast.project01.mreview.service.MovieService;
@@ -17,10 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/movie")

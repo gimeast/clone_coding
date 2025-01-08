@@ -4,7 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import gimeast.project01.common.QUploadResultDTO;
+import gimeast.project01.common.dto.QUploadResultDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;
 import gimeast.project01.mreview.dto.QMovieListDTO;
 import gimeast.project01.mreview.entity.QMovie;

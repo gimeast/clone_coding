@@ -2,7 +2,7 @@ package gimeast.project01.guestbook.repository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.guestbook.dto.GuestbookDTO;
 import gimeast.project01.guestbook.entity.Guestbook;
 import gimeast.project01.guestbook.entity.QGuestbook;

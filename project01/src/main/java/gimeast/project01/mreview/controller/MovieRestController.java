@@ -1,6 +1,6 @@
 package gimeast.project01.mreview.controller;
 
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.mreview.dto.MovieDTO;
 import gimeast.project01.mreview.dto.ReviewDTO;
 import gimeast.project01.mreview.service.MovieService;

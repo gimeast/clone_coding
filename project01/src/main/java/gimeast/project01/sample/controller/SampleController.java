@@ -1,7 +1,7 @@
 package gimeast.project01.sample.controller;
 
-import gimeast.project01.common.FileDeleteDTO;
-import gimeast.project01.common.UploadResultDTO;
+import gimeast.project01.common.dto.FileDeleteDTO;
+import gimeast.project01.common.dto.UploadResultDTO;
 import gimeast.project01.common.utils.FileUtils;
 import gimeast.project01.sample.dto.MemoDTO;
 import gimeast.project01.sample.repository.MemoRepository;

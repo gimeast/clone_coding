@@ -1,7 +1,7 @@
 package gimeast.project01.mreview.service;
 
-import gimeast.project01.common.PageRequestDTO;
-import gimeast.project01.common.UploadResultDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
+import gimeast.project01.common.dto.UploadResultDTO;
 import gimeast.project01.common.utils.FileUtils;
 import gimeast.project01.mreview.dto.MovieDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;

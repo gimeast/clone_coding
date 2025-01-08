@@ -1,7 +1,7 @@
 package gimeast.project01.common.utils;
 
 
-import gimeast.project01.common.UploadResultDTO;
+import gimeast.project01.common.dto.UploadResultDTO;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;

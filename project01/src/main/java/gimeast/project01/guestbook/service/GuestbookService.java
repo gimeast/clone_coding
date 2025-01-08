@@ -1,15 +1,12 @@
 package gimeast.project01.guestbook.service;
 
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.guestbook.dto.GuestbookDTO;
 import gimeast.project01.guestbook.entity.Guestbook;
 import gimeast.project01.guestbook.mapper.GuestbookMapper;
 import gimeast.project01.guestbook.repository.GuestbookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

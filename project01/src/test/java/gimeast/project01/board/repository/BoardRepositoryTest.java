@@ -4,7 +4,7 @@ import gimeast.project01.board.dto.BoardListDTO;
 import gimeast.project01.board.dto.BoardWithReplyDTO;
 import gimeast.project01.board.entity.Board;
 import gimeast.project01.board.entity.User;
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

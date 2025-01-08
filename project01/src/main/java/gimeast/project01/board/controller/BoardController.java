@@ -5,7 +5,7 @@ import gimeast.project01.board.dto.BoardListDTO;
 import gimeast.project01.board.dto.BoardWithReplyDTO;
 import gimeast.project01.board.dto.ReplyDTO;
 import gimeast.project01.board.service.BoardService;
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

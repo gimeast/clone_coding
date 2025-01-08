@@ -11,7 +11,7 @@ import gimeast.project01.board.mapper.BoardMapper;
 import gimeast.project01.board.repository.BoardRepository;
 import gimeast.project01.board.repository.ReplyRepository;
 import gimeast.project01.board.repository.UserRepository;
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

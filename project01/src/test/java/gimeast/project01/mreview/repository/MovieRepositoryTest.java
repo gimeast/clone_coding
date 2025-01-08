@@ -1,6 +1,6 @@
 package gimeast.project01.mreview.repository;
 
-import gimeast.project01.common.PageRequestDTO;
+import gimeast.project01.common.dto.PageRequestDTO;
 import gimeast.project01.mreview.dto.MovieListDTO;
 import gimeast.project01.mreview.entity.Movie;
 import gimeast.project01.mreview.entity.MovieImage;

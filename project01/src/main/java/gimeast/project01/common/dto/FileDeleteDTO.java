@@ -1,4 +1,4 @@
-package gimeast.project01.common;
+package gimeast.project01.common.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

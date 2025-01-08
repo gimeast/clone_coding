@@ -1,6 +1,6 @@
 package gimeast.project01.mreview.dto;
 
-import gimeast.project01.common.UploadResultDTO;
+import gimeast.project01.common.dto.UploadResultDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
