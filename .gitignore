@@ -38,3 +38,4 @@ out/
 
 application-datasource.properties
 application-multipart.properties
+application-oauth.properties
