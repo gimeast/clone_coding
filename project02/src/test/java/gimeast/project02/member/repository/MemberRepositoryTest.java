@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -32,7 +30,7 @@ class MemberRepositoryTest {
         //given
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Member member = Member.builder()
-                    .email("user" + i + "@google.com")
+                    .email("user" + i + "@gmail.com")
                     .name("사용자" + i)
                     .fromSocial(false)
                     .password(passwordEncoder.encode("1111"))
@@ -60,11 +58,11 @@ class MemberRepositoryTest {
     @DisplayName("회원 데이터 조회")
     void getMemberWithRoleSet() {
         //given
-        String email = "user81@google.com";
-        boolean social = false;
+        String email = "slasnrndu@gmail.com";
+        boolean social = true;
 
         //when
-        Optional<Member> byEmail = memberRepository.findByEmail(email, social);
+        Optional<Member> byEmail = memberRepository.findByEmailAndSocial(email, social);
 
         //then
         Member member = byEmail.orElseThrow();

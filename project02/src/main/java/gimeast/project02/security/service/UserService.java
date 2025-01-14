@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("UserService loadUserByUsername {}", username);
 
-        Optional<Member> byEmail = memberRepository.findByEmail(username, false);
+        Optional<Member> byEmail = memberRepository.findByEmailAndSocial(username, false);
 
         if(byEmail.isEmpty()) {
             throw new UsernameNotFoundException("Check Email or Social");
