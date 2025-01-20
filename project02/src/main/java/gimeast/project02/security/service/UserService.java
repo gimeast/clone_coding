@@ -43,6 +43,7 @@ public class UserService implements UserDetailsService {
         authMemberDTO.setName(member.getName());
         authMemberDTO.setFromSocial(member.isFromSocial());
 
+        log.info("authMemberDTO: {}", authMemberDTO);
         return authMemberDTO;
     }
 

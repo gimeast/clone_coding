@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import java.io.IOException;
 
 @Slf4j
-public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
+public class SocialLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
@@ -24,7 +24,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Value("${gimeast.temp-password.value}")
     private String TEMP_PASSWORD;
 
-    public CustomLoginSuccessHandler(PasswordEncoder passwordEncoder) {
+    public SocialLoginSuccessHandler(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 

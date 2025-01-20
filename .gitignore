@@ -39,3 +39,4 @@ out/
 application-datasource.properties
 application-multipart.properties
 application-oauth.properties
+application-security.properties
