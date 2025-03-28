@@ -1,7 +1,7 @@
-package gimeast.restfulapiex2.member.controller;
+package gimeast.restfulapiex2.security.controller;
 
 import gimeast.restfulapiex2.member.dto.MemberDTO;
-import gimeast.restfulapiex2.member.security.util.JWTUtil;
+import gimeast.restfulapiex2.security.util.JWTUtil;
 import gimeast.restfulapiex2.member.service.MemberService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class TokenController {
         log.info("make token..........");
 
         MemberDTO memberDTOResult = memberService.read(memberDTO.getMid(), memberDTO.getMpw());
-        log.info(memberDTOResult);
+        log.info("memberDTOResult: {}", memberDTOResult);
 
         String mid = memberDTOResult.getMid();
         Map<String, Object> dataMap = memberDTOResult.getDataMap();

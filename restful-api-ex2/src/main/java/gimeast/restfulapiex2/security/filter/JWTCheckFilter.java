@@ -1,7 +1,7 @@
-package gimeast.restfulapiex2.member.security.filter;
+package gimeast.restfulapiex2.security.filter;
 
-import gimeast.restfulapiex2.member.security.auth.CustomUserPrincipal;
-import gimeast.restfulapiex2.member.security.util.JWTUtil;
+import gimeast.restfulapiex2.security.auth.CustomUserPrincipal;
+import gimeast.restfulapiex2.security.util.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +36,11 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         //경로지정 필요
         if (request.getServletPath().startsWith("/api/v1/token/")) {
+            return true;
+        }
+
+        String path = request.getRequestURI();
+        if (!path.startsWith("/api/")) {
             return true;
         }
 

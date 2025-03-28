@@ -1,4 +1,4 @@
-package gimeast.restfulapiex2.member.security.auth;
+package gimeast.restfulapiex2.security.auth;
 
 import lombok.RequiredArgsConstructor;
 

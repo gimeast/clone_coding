@@ -1,6 +1,6 @@
-package gimeast.restfulapiex2.member.security.config;
+package gimeast.restfulapiex2.security.config;
 
-import gimeast.restfulapiex2.member.security.filter.JWTCheckFilter;
+import gimeast.restfulapiex2.security.filter.JWTCheckFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
