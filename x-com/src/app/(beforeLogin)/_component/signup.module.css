@@ -1,0 +1,173 @@
+.container {
+    padding: 1rem;
+    width: 60rem;
+
+    background-color: black;
+    border-radius: 2rem;
+
+    .headerWrapper {
+        display: flex;
+
+        div {
+            flex: 1;
+        }
+        .close > button {
+            color: white;
+        }
+    }
+
+    .formWrapper {
+        display: flex;
+        flex-direction: column;
+
+        padding: 4rem 7rem;
+
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .textContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            margin-top: 3rem;
+
+            label {
+                border: 1px solid gray;
+                border-radius: 0.5rem;
+
+                padding: 1rem 1rem;
+
+                span {
+                    position: relative;
+                    top: 1rem;
+
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    color: gray;
+
+                    transition: font-size 0.2s ease-in;
+                    user-select: none;
+                }
+
+                span:has(+ input:focus),
+                span:has(+ input:not(:placeholder-shown)) {
+                    transition: font-size 0.2s ease-in;
+                    font-size: 1.2rem;
+                    top: 0;
+                }
+            }
+
+            input {
+                width: 100%;
+
+                background-color: black;
+                border: none;
+
+                font-size: 1.6rem;
+                color: white;
+            }
+            input::placeholder {
+                opacity: 0;
+            }
+            input:focus {
+                outline: none;
+            }
+
+            .typeButton {
+                align-self: end;
+
+                color: cornflowerblue;
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+        }
+        .birthdayWrapper {
+            span {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+            p {
+                margin-top: 1rem;
+                font-size: 1.4rem;
+                color: darkgray;
+            }
+            .selectWrapper {
+                margin-top: 2rem;
+                display: flex;
+                gap: 1rem;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+
+                    border: 1px solid gray;
+                    border-radius: 0.5rem;
+
+                    &:has(select:focus) {
+                        border: 2px solid cornflowerblue;
+                    }
+                    select {
+                        width: 100%;
+                        height: 100%;
+                        padding: 0.5rem 0.7rem 1rem;
+
+                        background-color: black;
+                        color: white;
+                        border: none;
+                        border-radius: 0.5rem;
+                        font-size: 1.6rem;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                label[for='month'] {
+                    flex: 2;
+                    &:before {
+                        content: '월';
+                        color: gray;
+                        font-size: 1.2rem;
+                        padding: 1rem 1rem 0;
+                    }
+                }
+                label[for='day'] {
+                    flex: 1;
+                    &:before {
+                        content: '일';
+                        color: gray;
+                        font-size: 1.2rem;
+                        padding: 1rem 1rem 0;
+                    }
+                }
+                label[for='year'] {
+                    flex: 1;
+                    &:before {
+                        content: '년';
+                        color: gray;
+                        font-size: 1.2rem;
+                        padding: 1rem 1rem 0;
+                    }
+                }
+            }
+        }
+
+        button[type='submit'] {
+            padding: 1.5rem;
+            margin-top: 10rem;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+            background-color: white;
+            border-radius: 3rem;
+
+            &:hover {
+                background-color: rgb(216, 216, 216);
+                transition: background-color 0.2s ease-in-out;
+            }
+        }
+    }
+}

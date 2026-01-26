@@ -1,0 +1,14 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    background-color: rgba(53, 72, 87, 0.7);
+}
