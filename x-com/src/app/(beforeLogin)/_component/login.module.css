@@ -1,0 +1,29 @@
+.container {
+    padding: 1rem;
+    width: 60rem;
+
+    background-color: black;
+    border-radius: 2rem;
+
+    .formWrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 4rem 7rem;
+
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            margin-top: 3rem;
+        }
+        button[type='submit'] {
+            margin-top: 5rem;
+        }
+    }
+}

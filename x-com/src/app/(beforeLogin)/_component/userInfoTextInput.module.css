@@ -1,0 +1,44 @@
+.label {
+    padding: 1rem 1rem;
+
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+
+    span {
+        position: relative;
+        top: 1rem;
+
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: gray;
+
+        transition: font-size 0.2s ease-in;
+        user-select: none;
+    }
+
+    span:has(+ input:focus),
+    span:has(+ input:not(:placeholder-shown)) {
+        transition: font-size 0.2s ease-in;
+        font-size: 1.2rem;
+        top: 0;
+    }
+
+    input {
+        width: 100%;
+
+        background-color: black;
+        border: none;
+
+        font-size: 1.6rem;
+        color: white;
+    }
+    input::placeholder {
+        opacity: 0;
+    }
+    input:focus {
+        outline: none;
+    }
+}
+.label:has(input:focus) {
+    border: 2px solid cornflowerblue;
+}

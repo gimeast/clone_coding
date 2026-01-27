@@ -1,0 +1,10 @@
+.headerWrapper {
+    display: flex;
+
+    & > * {
+        flex: 1;
+    }
+    button > svg {
+        display: flex;
+    }
+}
