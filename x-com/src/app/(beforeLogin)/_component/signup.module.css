@@ -59,6 +59,9 @@
                     top: 0;
                 }
             }
+            label:has(input:focus) {
+                border: 2px solid cornflowerblue;
+            }
 
             input {
                 width: 100%;
@@ -119,9 +122,13 @@
                         border: none;
                         border-radius: 0.5rem;
                         font-size: 1.6rem;
+
                         &:focus {
                             outline: none;
                         }
+                    }
+                    select:hover {
+                        cursor: pointer;
                     }
                 }
 
