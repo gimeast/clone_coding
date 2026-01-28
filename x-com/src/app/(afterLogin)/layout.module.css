@@ -6,6 +6,24 @@
     .leftHeader {
         width: 27.5rem;
         padding: 0 0.8rem;
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 5.2rem;
+            height: 5.2rem;
+
+            a {
+                display: inline-block;
+
+                svg {
+                    width: 5rem;
+                    height: 3rem;
+                }
+            }
+        }
     }
 
     .main {
@@ -16,6 +34,7 @@
         .mainSection {
             width: 60rem;
             height: 100dvh;
+
             border-left: 1px solid gray;
             border-right: 1px solid gray;
         }
@@ -23,6 +42,39 @@
         .rightSection {
             width: 35rem;
             margin-right: 7rem;
+        }
+
+        .searchWrapper {
+            display: flex;
+            align-items: center;
+
+            margin-top: 0.5rem;
+
+            border: 1px solid gray;
+            border-radius: 3rem;
+
+            &:has(input[id='search']:focus) {
+                border: 2px solid cornflowerblue;
+            }
+            .searchBorder {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                height: 100%;
+
+                border: 1px solid rgba(0, 0, 0, 0);
+
+                input[id='search'] {
+                    font-size: 1.6rem;
+                    color: white;
+                    border: none;
+                    background: none;
+                    outline: none;
+                }
+
+                &:has(input[id='search']:focus) {
+                    border: 0;
+                }
+            }
         }
     }
 }
