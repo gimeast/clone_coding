@@ -1,18 +1,12 @@
-import '@/app/globals.css';
+import { ReactNode } from 'react';
 
-export default function RootLayout({
-    children,
-    modal,
-}: Readonly<{
-    children: React.ReactNode;
-    modal: React.ReactNode;
-}>) {
+const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
     return (
-        <html lang='ko'>
-            <body>
-                {children}
-                {modal}
-            </body>
-        </html>
+        <>
+            {children}
+            {modal}
+        </>
     );
-}
+};
+
+export default Layout;

@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    .leftHeader {
+        width: 27.5rem;
+        padding: 0 0.8rem;
+    }
+
+    .main {
+        display: flex;
+        width: 105rem;
+        justify-content: space-between;
+
+        .mainSection {
+            width: 60rem;
+            height: 100dvh;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+        }
+
+        .rightSection {
+            width: 35rem;
+            margin-right: 7rem;
+        }
+    }
+}
