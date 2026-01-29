@@ -37,7 +37,11 @@
 
         margin-top: 2rem;
         padding: 1.5rem 9.5rem;
+
+        background-color: white;
         border-radius: 3rem;
-        background-color: dodgerblue;
+        color: black;
+        font-size: 1.8rem;
+        font-weight: 700;
     }
 }

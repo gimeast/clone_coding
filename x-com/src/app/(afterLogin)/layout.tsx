@@ -5,6 +5,8 @@ import { ReactNode } from 'react';
 import Link from 'next/link';
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
 import { Search } from 'lucide-react';
+import SearchInput from '@/app/(afterLogin)/_component/SearchInput';
+import TrendList from '@/app/(afterLogin)/_component/TrendList';
 
 const Layout = ({ children }: { children: ReactNode }) => {
     return (
@@ -21,15 +23,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <main className={style.main}>
                 <section className={style.mainSection}>{children}</section>
                 <section className={style.rightSection}>
-                    <form className={style.searchWrapper}>
-                        <div className={style.searchBorder}>
-                            <Search width={16} />
-                            <label className='sr-only' htmlFor='search'>
-                                검색
-                            </label>
-                            <input type='text' id='search' placeholder='Search' />
-                        </div>
-                    </form>
+                    <SearchInput />
+                    <div className={style.horizontalLine}></div>
+                    <TrendList />
                 </section>
             </main>
         </div>
