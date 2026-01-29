@@ -1,9 +1,10 @@
 import style from './layout.module.css';
 import Logo from '@/assets/logo.svg';
-import Search from '@/assets/search.svg';
 
 import { ReactNode } from 'react';
 import Link from 'next/link';
+import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
+import { Search } from 'lucide-react';
 
 const Layout = ({ children }: { children: ReactNode }) => {
     return (
@@ -14,19 +15,21 @@ const Layout = ({ children }: { children: ReactNode }) => {
                         <Logo />
                     </Link>
                 </h1>
+                <NavMenu />
+                <button className={style.logoutButton}>로그아웃 버튼</button>
             </header>
             <main className={style.main}>
                 <section className={style.mainSection}>{children}</section>
                 <section className={style.rightSection}>
-                    <div className={style.searchWrapper}>
+                    <form className={style.searchWrapper}>
                         <div className={style.searchBorder}>
-                            <Search />
+                            <Search width={16} />
                             <label className='sr-only' htmlFor='search'>
                                 검색
                             </label>
-                            <input type='text' id='search' />
+                            <input type='text' id='search' placeholder='Search' />
                         </div>
-                    </div>
+                    </form>
                 </section>
             </main>
         </div>
