@@ -7,6 +7,7 @@ import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
 import { Search } from 'lucide-react';
 import SearchInput from '@/app/(afterLogin)/_component/SearchInput';
 import TrendList from '@/app/(afterLogin)/_component/TrendList';
+import FollowList from '@/app/(afterLogin)/_component/FollowList';
 
 const Layout = ({ children }: { children: ReactNode }) => {
     return (
@@ -26,6 +27,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                     <SearchInput />
                     <div className={style.horizontalLine}></div>
                     <TrendList />
+                    <FollowList />
                 </section>
             </main>
         </div>

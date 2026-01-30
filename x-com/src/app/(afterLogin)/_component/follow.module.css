@@ -1,0 +1,49 @@
+.follow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+
+        .logo {
+            padding: 0.5rem;
+
+            background-color: white;
+            border-radius: 50%;
+
+            svg {
+                width: 2.4rem;
+                height: 2.4rem;
+                color: black;
+            }
+        }
+        .userWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 0.4rem;
+
+            .userName {
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
+            .hashtag {
+                font-size: 1.2rem;
+                color: gray;
+            }
+        }
+    }
+
+    .followButton {
+        padding: 0.8rem 1.4rem;
+
+        font-size: 1.4rem;
+        background-color: white;
+        border-radius: 1.8rem;
+    }
+}
