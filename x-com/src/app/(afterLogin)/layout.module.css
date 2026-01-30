@@ -45,9 +45,6 @@
 
         .mainSection {
             width: 60rem;
-
-            border-left: 1px solid gray;
-            border-right: 1px solid gray;
         }
 
         .rightSection {
