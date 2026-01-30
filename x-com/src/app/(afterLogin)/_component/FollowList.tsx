@@ -33,14 +33,14 @@ const FollowList = () => {
         },
     ];
     return (
-        <aside className={style.container}>
-            <h3 className={style.title}>팔로우 추천</h3>
+        <section className={style.container}>
+            <h2 className={style.title}>팔로우 추천</h2>
             <ul>
                 {usersDummyData.map(user => (
                     <Follow key={user.id} user={user} />
                 ))}
             </ul>
-        </aside>
+        </section>
     );
 };
 

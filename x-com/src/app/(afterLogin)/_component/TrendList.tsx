@@ -8,14 +8,14 @@ const TrendList = () => {
         { tagId: 4, title: 'GOLD', count: 89 },
     ];
     return (
-        <aside className={style.container}>
-            <h3 className={style.title}>What’s happening</h3>
+        <section className={style.container}>
+            <h2 className={style.title}>What’s happening</h2>
             <ul className={style.box}>
                 {trendsDummyData.map(trend => (
                     <Trend key={trend.tagId} trend={trend} />
                 ))}
             </ul>
-        </aside>
+        </section>
     );
 };
 

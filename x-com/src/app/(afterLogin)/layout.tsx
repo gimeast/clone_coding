@@ -22,12 +22,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
             </header>
             <main className={style.main}>
                 <section className={style.mainSection}>{children}</section>
-                <section className={style.rightSection}>
+                <aside className={style.rightSection}>
                     <SearchInput />
                     <div className={style.horizontalLine}></div>
-                    <TrendList />
-                    <FollowList />
-                </section>
+                    <div className={style.content}>
+                        <TrendList />
+                        <FollowList />
+                    </div>
+                </aside>
             </main>
         </div>
     );
