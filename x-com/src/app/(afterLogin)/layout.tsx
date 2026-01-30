@@ -4,7 +4,6 @@ import Logo from '@/assets/logo.svg';
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
-import { Search } from 'lucide-react';
 import SearchInput from '@/app/(afterLogin)/_component/SearchInput';
 import TrendList from '@/app/(afterLogin)/_component/TrendList';
 import FollowList from '@/app/(afterLogin)/_component/FollowList';
