@@ -1,0 +1,50 @@
+.post {
+    display: flex;
+    gap: 1rem;
+
+    padding: 2rem;
+    border-bottom: 1px solid gray;
+
+    .profile {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .box {
+        font-size: 1.6rem;
+        line-height: 2rem;
+
+        .postInfo {
+            display: flex;
+            gap: 0.5rem;
+
+            .userName {
+                font-weight: 700;
+            }
+            .userId,
+            .time {
+                color: gray;
+            }
+            .time:before {
+                content: '·';
+                margin-right: 0.5rem;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 2rem;
+            margin-top: 1.4rem;
+        }
+    }
+    .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+
+        margin-top: 1rem;
+
+        button {
+            color: white;
+        }
+    }
+}
