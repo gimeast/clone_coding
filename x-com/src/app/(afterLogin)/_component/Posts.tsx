@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import style from './posts.module.css';
 import { Heart, MessageCircle, Repeat2 } from 'lucide-react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 const Posts = () => {
+    const postDate = dayjs('2026-02-01 08:31:33').fromNow(true);
     return (
         <article className={style.post}>
             <Image className={style.profile} src='/dummy_profile.webp' alt='프로필' width={50} height={50} />
@@ -11,7 +16,7 @@ const Posts = () => {
                     <div className={style.postInfo}>
                         <span className={style.userName}>Elon Musk</span>
                         <span className={style.userId}>@elonmusk</span>
-                        <time className={style.time}>1분전</time>
+                        <time className={style.time}>{postDate}</time>
                     </div>
                     <p className={style.content}>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eum facere nemo quos
