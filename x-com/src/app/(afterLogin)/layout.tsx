@@ -8,7 +8,7 @@ import SearchInput from '@/app/(afterLogin)/_component/SearchInput';
 import TrendList from '@/app/(afterLogin)/_component/TrendList';
 import FollowList from '@/app/(afterLogin)/_component/FollowList';
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
     return (
         <div className={style.container}>
             <header className={style.leftHeader}>
@@ -31,6 +31,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                     </div>
                 </aside>
             </main>
+            {modal}
         </div>
     );
 };

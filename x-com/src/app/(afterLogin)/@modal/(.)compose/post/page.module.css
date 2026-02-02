@@ -1,0 +1,64 @@
+.container::backdrop {
+    background-color: rgba(191, 191, 191, 0.4);
+}
+.container {
+    border: none;
+    background-color: transparent;
+
+    .modal {
+        display: flex;
+        flex-direction: column;
+
+        width: 60rem;
+        height: 25rem;
+        border-radius: 1.4rem;
+        padding: 1.4rem;
+        background-color: black;
+
+        .close {
+            align-self: start;
+            color: white;
+        }
+        .body {
+            flex: 1;
+            display: flex;
+            gap: 2rem;
+
+            margin-top: 2rem;
+            border-bottom: 1px solid gray;
+
+            img {
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            textarea {
+                border: none;
+                font-size: 1.8rem;
+                padding-top: 1.6rem;
+                background-color: black;
+                color: white;
+            }
+            textarea::placeholder {
+                font-size: 2rem;
+            }
+        }
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 0;
+
+            button {
+                padding: 0.8rem 1.4rem;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: black;
+                border-radius: 2rem;
+                background-color: #e6e6e6;
+            }
+            button:disabled {
+                background-color: gray;
+            }
+        }
+    }
+}

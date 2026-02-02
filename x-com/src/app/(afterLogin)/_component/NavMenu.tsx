@@ -36,7 +36,7 @@ const NavMenu = () => {
                     </Link>
                 </li>
             </ul>
-            <Link className={style.postButton} href='/compose/tweet'>
+            <Link className={style.postButton} href='/compose/post'>
                 Post
             </Link>
         </nav>
