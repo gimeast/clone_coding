@@ -41,10 +41,35 @@
         display: flex;
         justify-content: space-between;
 
-        margin-top: 1rem;
-
         button {
+            padding: 1rem;
             color: white;
+            border-radius: 50%;
+        }
+        .commented {
+            color: rgba(29, 155, 240);
+        }
+        .reposted {
+            color: rgb(142, 255, 163);
+        }
+        .liked {
+            color: rgb(255, 123, 123);
+        }
+
+        .commentBtn:hover {
+            color: rgba(29, 155, 240);
+            background: radial-gradient(circle, rgba(29, 155, 240, 0.3) 0%, rgba(29, 155, 240, 0) 70%);
+            transition: color 0.2s ease-in;
+        }
+        .repostBtn:hover {
+            color: rgb(142, 255, 163);
+            background: radial-gradient(circle, rgba(142, 255, 163, 0.3) 0%, rgba(29, 155, 240, 0) 70%);
+            transition: color 0.2s ease-in;
+        }
+        .likeBtn:hover {
+            color: rgb(255, 123, 123);
+            background: radial-gradient(circle, rgba(255, 123, 123, 0.3) 0%, rgba(29, 155, 240, 0) 70%);
+            transition: color 0.2s ease-in;
         }
     }
 }

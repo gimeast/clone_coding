@@ -3,11 +3,16 @@ import style from './posts.module.css';
 import { Heart, MessageCircle, Repeat2 } from 'lucide-react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import clsx from 'clsx';
 
 dayjs.extend(relativeTime);
 
 const Posts = () => {
     const postDate = dayjs('2026-02-01 08:31:33').fromNow(true);
+    const commented = false;
+    const reposted = true;
+    const liked = true;
+
     return (
         <article className={style.post}>
             <Image className={style.profile} src='/dummy_profile.webp' alt='프로필' width={50} height={50} />
@@ -26,13 +31,13 @@ const Posts = () => {
                     <Image src='/img1.png' alt='내용 이미지' width={0} height={0} sizes='100vw' />
                 </div>
                 <div className={style.buttonContainer}>
-                    <button>
+                    <button className={clsx(style.commentBtn, commented && style.commented)}>
                         <MessageCircle />
                     </button>
-                    <button>
+                    <button className={clsx(style.repostBtn, reposted && style.reposted)}>
                         <Repeat2 />
                     </button>
-                    <button>
+                    <button className={clsx(style.likeBtn, liked && style.liked)}>
                         <Heart />
                     </button>
                 </div>
