@@ -17,7 +17,7 @@ const NavMenu = () => {
                         Home
                     </Link>
                 </li>
-                <li className={segment === 'explore' ? style.active : ''}>
+                <li className={segment === 'explore' || segment === 'search' ? style.active : ''}>
                     <Link href='/explore'>
                         <Search />
                         Explore

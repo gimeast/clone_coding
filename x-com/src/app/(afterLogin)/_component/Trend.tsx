@@ -9,7 +9,7 @@ interface TrendType {
 const Trend = ({ trend }: { trend: TrendType }) => {
     return (
         <li className={style.trend}>
-            <Link href={`/explore?q=${encodeURIComponent(trend.title)}`}>
+            <Link href={`/search?q=${encodeURIComponent(trend.title)}`}>
                 <span>실시간트렌드</span>
                 <strong>{trend.title}</strong>
                 <span>{trend.count.toLocaleString()} posts</span>

@@ -7,6 +7,7 @@ import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
 import SearchInput from '@/app/(afterLogin)/_component/SearchInput';
 import TrendList from '@/app/(afterLogin)/_component/TrendList';
 import FollowList from '@/app/(afterLogin)/_component/FollowList';
+import RightSearchZone from '@/app/(afterLogin)/_component/RightSearchZone';
 
 const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
     return (
@@ -23,8 +24,7 @@ const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) 
             <main className={style.main}>
                 <section className={style.mainSection}>{children}</section>
                 <aside className={style.rightSection}>
-                    <SearchInput />
-                    <div className={style.horizontalLine}></div>
+                    <RightSearchZone />
                     <div className={style.content}>
                         <TrendList />
                         <FollowList />

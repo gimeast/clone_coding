@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    margin-top: 1.5rem;
+
+    .title {
+        padding: 1.5rem 1.5rem 1.2rem;
+
+        font-size: 2.4rem;
+        font-weight: 700;
+        border: 1px solid gray;
+        border-radius: 1.4rem;
+    }
+    .radioContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        padding: 1.5rem;
+        border: 1px solid gray;
+        border-radius: 1.4rem;
+
+        .radioWrapper {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+            label {
+                font-size: 1.6rem;
+            }
+            div {
+                display: flex;
+                justify-content: space-between;
+
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+.horizontalLine {
+    width: inherit;
+    height: 2px;
+    background-color: gray;
+}

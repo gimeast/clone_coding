@@ -55,11 +55,6 @@
             width: 35rem;
             margin-right: 7rem;
 
-            .horizontalLine {
-                width: inherit;
-                height: 2px;
-                background-color: gray;
-            }
             .content {
                 display: flex;
                 flex-direction: column;

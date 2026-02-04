@@ -1,12 +1,20 @@
+'use client';
+
 import style from './trendList.module.css';
 import Trend from '@/app/(afterLogin)/_component/Trend';
+import { useSelectedLayoutSegment } from 'next/navigation';
 const TrendList = () => {
+    const segment = useSelectedLayoutSegment();
+
     const trendsDummyData = [
         { tagId: 1, title: 'SK하이닉스', count: 1234 },
         { tagId: 2, title: 'GOOGL', count: 5643 },
         { tagId: 3, title: '두바이쫀득쿠키', count: 32 },
         { tagId: 4, title: 'GOLD', count: 89 },
     ];
+
+    if (segment === 'explore') return null;
+
     return (
         <section className={style.container}>
             <h2 className={style.title}>What’s happening</h2>
