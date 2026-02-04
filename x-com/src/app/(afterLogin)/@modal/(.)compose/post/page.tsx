@@ -10,12 +10,17 @@ const Page = () => {
     const [content, setContent] = useState('');
     const router = useRouter();
     const dialogRef = useRef<HTMLDialogElement>(null);
+    const fileRef = useRef<HTMLInputElement>(null);
 
     const disabled = content.trim().length === 0;
 
     const handleClose = useCallback(() => {
         router.back();
     }, [router]);
+
+    const handleFile = () => {
+        fileRef.current?.click();
+    };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -25,8 +30,13 @@ const Page = () => {
     useEffect(() => {
         const dialog = dialogRef.current;
         dialog?.showModal();
-        dialog?.addEventListener('cancel', handleClose);
-        return () => dialog?.removeEventListener('cancel', handleClose);
+
+        const handleCancel = (e: Event) => {
+            if (e.target === dialog) handleClose();
+        };
+        dialog?.addEventListener('cancel', handleCancel);
+
+        return () => dialog?.removeEventListener('cancel', handleCancel);
     }, [handleClose]);
 
     return (
@@ -45,8 +55,11 @@ const Page = () => {
                     />
                 </div>
                 <div className={style.bottom}>
-                    <ImageSvg />
-                    <button type='submit' disabled={disabled}>
+                    <input type='file' ref={fileRef} multiple hidden />
+                    <button className={style.fileButton} type='button' onClick={handleFile}>
+                        <ImageSvg />
+                    </button>
+                    <button className={style.submitButton} type='submit' disabled={disabled}>
                         Post
                     </button>
                 </div>
