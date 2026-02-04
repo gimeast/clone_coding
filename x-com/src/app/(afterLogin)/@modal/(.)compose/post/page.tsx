@@ -2,7 +2,7 @@
 
 import { X, Image as ImageSvg } from 'lucide-react';
 import style from './page.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -13,17 +13,25 @@ const Page = () => {
 
     const disabled = content.trim().length === 0;
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         router.back();
+    }, [router]);
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        handleClose();
     };
 
     useEffect(() => {
-        dialogRef.current?.showModal();
-    }, []);
+        const dialog = dialogRef.current;
+        dialog?.showModal();
+        dialog?.addEventListener('cancel', handleClose);
+        return () => dialog?.removeEventListener('cancel', handleClose);
+    }, [handleClose]);
 
     return (
         <dialog className={style.container} ref={dialogRef}>
-            <form className={style.modal}>
+            <form className={style.modal} onSubmit={handleSubmit}>
                 <button type='button' className={style.close} onClick={handleClose}>
                     <X />
                 </button>
