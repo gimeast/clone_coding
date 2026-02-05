@@ -1,0 +1,26 @@
+.tabs {
+    display: flex;
+
+    button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        padding: 1.5rem 0 0;
+
+        color: white;
+        font-size: 1.8rem;
+    }
+    button:hover {
+        background-color: rgba(236, 238, 243, 0.1);
+        transition: background-color 0.2s ease-in-out;
+    }
+    .selected {
+        flex: 1;
+        width: 5rem;
+        margin-top: 1.5rem;
+        border-bottom: 3px solid #47c0ff;
+        border-radius: 5rem;
+    }
+}

@@ -3,7 +3,7 @@
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const BackButton = ({ color }: { color: 'white' | 'black' }) => {
+const CloseButton = ({ color }: { color: 'white' | 'black' }) => {
     const router = useRouter();
     const handleClose = () => {
         router.back();
@@ -16,4 +16,4 @@ const BackButton = ({ color }: { color: 'white' | 'black' }) => {
     );
 };
 
-export default BackButton;
+export default CloseButton;

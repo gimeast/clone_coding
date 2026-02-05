@@ -57,6 +57,7 @@
 
             width: 35rem;
             margin-right: 7rem;
+            padding-top: 0.5rem;
 
             .content {
                 display: flex;

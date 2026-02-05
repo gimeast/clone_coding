@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from './posts.module.css';
+import style from './post.module.css';
 import { Heart, MessageCircle, Repeat2 } from 'lucide-react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 dayjs.extend(relativeTime);
 
-const Posts = () => {
+const Post = () => {
     const postDate = dayjs('2026-02-01 08:31:33').fromNow(true);
     const commented = false;
     const reposted = true;
@@ -46,4 +46,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default Post;

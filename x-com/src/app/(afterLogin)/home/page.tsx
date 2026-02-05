@@ -4,7 +4,7 @@ import { Image as ImgButton } from 'lucide-react';
 import style from './page.module.css';
 import Image from 'next/image';
 import { useRef } from 'react';
-import Posts from '@/app/(afterLogin)/_component/Posts';
+import Post from '@/app/(afterLogin)/_component/Post';
 
 const Page = () => {
     const fileRef = useRef<HTMLInputElement>(null);
@@ -31,7 +31,7 @@ const Page = () => {
                     </div>
                 </div>
             </form>
-            <Posts />
+            <Post />
         </div>
     );
 };

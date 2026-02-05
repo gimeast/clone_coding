@@ -1,10 +1,10 @@
-import BackButton from '@/app/(beforeLogin)/_component/BackButton';
+import CloseButton from '@/app/(beforeLogin)/_component/CloseButton';
 import style from './modalHeader.module.css';
 
 const ModalHeader = () => {
     return (
         <div className={style.headerWrapper}>
-            <BackButton color='white' />
+            <CloseButton color='white' />
             <svg
                 width={32}
                 height={32}
