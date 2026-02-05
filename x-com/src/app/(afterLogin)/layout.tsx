@@ -22,7 +22,7 @@ const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) 
                 <button className={style.logoutButton}>로그아웃 버튼</button>
             </header>
             <main className={style.main}>
-                <section className={style.mainSection}>{children}</section>
+                <div className={style.mainSection}>{children}</div>
                 <aside className={style.rightSection}>
                     <RightSearchZone />
                     <div className={style.content}>

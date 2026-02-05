@@ -43,8 +43,11 @@
         width: 105rem;
         justify-content: space-between;
 
+        border-left: 1px solid gray;
+
         .mainSection {
             width: 60rem;
+            border-right: 1px solid gray;
         }
 
         .rightSection {
