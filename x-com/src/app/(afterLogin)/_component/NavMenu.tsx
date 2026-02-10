@@ -7,6 +7,7 @@ import { House, Mail, Search, UserRound } from 'lucide-react';
 
 const NavMenu = () => {
     const segment = useSelectedLayoutSegment();
+    const userId = 'Elon_Musk';
 
     return (
         <nav className={style.nav}>
@@ -30,7 +31,7 @@ const NavMenu = () => {
                     </Link>
                 </li>
                 <li className={segment === 'profile' ? style.active : ''}>
-                    <Link href='/profile'>
+                    <Link href={`/${userId}`}>
                         <UserRound />
                         Profile
                     </Link>

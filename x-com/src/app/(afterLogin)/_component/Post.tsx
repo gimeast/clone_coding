@@ -4,31 +4,42 @@ import { Heart, MessageCircle, Repeat2 } from 'lucide-react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import clsx from 'clsx';
+import PostArticle from '@/app/(afterLogin)/_component/PostArticle';
+import Link from 'next/link';
 
 dayjs.extend(relativeTime);
 
 const Post = () => {
-    const postDate = dayjs('2026-02-01 08:31:33').fromNow(true);
+    const target = {
+        postId: 1,
+        User: {
+            id: 'Elon_Musk',
+            name: 'elonmusk',
+            image: '/dummy_profile.webp',
+        },
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eum facere nemo quos',
+        createdAt: new Date(),
+        Images: ['/img1.png'],
+    };
+
     const commented = false;
     const reposted = true;
     const liked = true;
 
     return (
-        <article className={style.post}>
-            <Image className={style.profile} src='/dummy_profile.webp' alt='프로필' width={50} height={50} />
+        <PostArticle post={target}>
+            <Image className={style.profile} src={target.User.image} alt='프로필' width={50} height={50} />
             <div>
                 <div className={style.box}>
                     <div className={style.postInfo}>
-                        <span className={style.userName}>Elon Musk</span>
-                        <span className={style.userId}>@elonmusk</span>
-                        <time className={style.time}>{postDate}</time>
+                        <Link href={`/${target.User.id}`} className={style.userName}>
+                            {target.User.name}
+                        </Link>
+                        <span className={style.userId}>@{target.User.id}</span>
+                        <time className={style.time}>{dayjs(target.createdAt).fromNow(true)}</time>
                     </div>
-                    <p className={style.content}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eum facere nemo quos
-                        voluptatem. Aperiam et exercitationem maiores maxime sequi. Aperiam commodi distinctio eos in
-                        nisi perspiciatis porro quia quos.
-                    </p>
-                    <Image src='/img1.png' alt='내용 이미지' width={0} height={0} sizes='100vw' />
+                    <p className={style.content}>{target.content}</p>
+                    <Image src={target.Images[0]} alt='게시물 이미지' width={0} height={0} sizes='100vw' />
                 </div>
                 <div className={style.buttonContainer}>
                     <button className={clsx(style.commentBtn, commented && style.commented)}>
@@ -42,7 +53,7 @@ const Post = () => {
                     </button>
                 </div>
             </div>
-        </article>
+        </PostArticle>
     );
 };
 

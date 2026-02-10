@@ -4,8 +4,8 @@ import Follow from '@/app/(afterLogin)/_component/Follow';
 const FollowList = () => {
     const usersDummyData = [
         {
-            id: 'elon',
-            name: 'Elon musk',
+            id: 'Elon_Musk',
+            name: 'elonmusk',
             image: '',
             Followers: [],
             _count: { Followers: 0, Followings: 0 },

@@ -5,9 +5,9 @@ import Image from 'next/image';
 
 const Page = () => {
     const user = {
-        id: 'elon',
-        name: 'Elon musk',
-        image: '',
+        id: 'Elon_Musk',
+        name: 'elonmusk',
+        image: '/dummy_profile.webp',
         Followers: [],
         _count: { Followers: 0, Followings: 0 },
     };
