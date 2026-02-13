@@ -1,0 +1,43 @@
+.formWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+
+    padding: 1.4rem 1.4rem 0;
+    border-bottom: 1px solid gray;
+
+    .profile {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    textarea {
+        display: block;
+        padding: 1.4rem 0;
+
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        scrollbar-width: none;
+    }
+    .buttonWrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.4rem 0;
+
+        .imgButton {
+            svg {
+                color: white;
+            }
+        }
+        button[type='submit'] {
+            padding: 1rem 1.8rem;
+
+            font-size: 1.8rem;
+            font-weight: 700;
+            background-color: gray;
+            border-radius: 2rem;
+        }
+    }
+}

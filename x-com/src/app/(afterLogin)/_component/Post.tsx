@@ -6,6 +6,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import clsx from 'clsx';
 import PostArticle from '@/app/(afterLogin)/_component/PostArticle';
 import Link from 'next/link';
+import { faker } from '@faker-js/faker/locale/ko';
 
 dayjs.extend(relativeTime);
 
@@ -19,8 +20,12 @@ const Post = () => {
         },
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eum facere nemo quos',
         createdAt: new Date(),
-        Images: ['/img1.png'],
+        Images: [] as any[],
     };
+
+    if (Math.random() > 0.5) {
+        target.Images.push({ imageId: 1, link: faker.image.urlPicsumPhotos({ width: 500, height: 300 }) });
+    }
 
     const commented = false;
     const reposted = true;
@@ -38,8 +43,18 @@ const Post = () => {
                         <span className={style.userId}>@{target.User.id}</span>
                         <time className={style.time}>{dayjs(target.createdAt).fromNow(true)}</time>
                     </div>
-                    <p className={style.content}>{target.content}</p>
-                    <Image src={target.Images[0]} alt='게시물 이미지' width={0} height={0} sizes='100vw' />
+                    <p>{target.content}</p>
+                    {target.Images && target.Images.length > 0 && (
+                        <Link href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}>
+                            <Image
+                                src={target.Images[0]?.link}
+                                alt='게시물 이미지'
+                                width={0}
+                                height={0}
+                                sizes='100vw'
+                            />
+                        </Link>
+                    )}
                 </div>
                 <div className={style.buttonContainer}>
                     <button className={clsx(style.commentBtn, commented && style.commented)}>

@@ -4,6 +4,12 @@
 
     padding: 2rem;
     border-bottom: 1px solid gray;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(191, 191, 191, 0.2);
+        transition: background-color 0.1s ease-in;
+    }
 
     .profile {
         border-radius: 50%;
@@ -19,6 +25,9 @@
 
             .userName {
                 font-weight: 700;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
             .userId,
             .time {
