@@ -22,7 +22,7 @@ const Post = ({ noImage }: Props) => {
             name: 'elonmusk',
             image: '/dummy_profile.webp',
         },
-        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eum facere nemo quos',
+        content: faker.lorem.text(),
         createdAt: new Date(),
         Images: [] as any[],
     };
@@ -47,7 +47,7 @@ const Post = ({ noImage }: Props) => {
                         <span className={style.userId}>@{target.User.id}</span>
                         <time className={style.time}>{dayjs(target.createdAt).fromNow(true)}</time>
                     </div>
-                    <p>{target.content}</p>
+                    <p className={style.content}>{target.content}</p>
                     {target.Images && target.Images.length > 0 && (
                         <Link href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}>
                             <Image

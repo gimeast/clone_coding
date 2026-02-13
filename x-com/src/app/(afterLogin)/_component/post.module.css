@@ -25,6 +25,8 @@
 
             .userName {
                 font-weight: 700;
+                color: white;
+
                 &:hover {
                     text-decoration: underline;
                 }
@@ -37,6 +39,9 @@
                 content: '·';
                 margin-right: 0.5rem;
             }
+        }
+        .content {
+            color: white;
         }
 
         img {

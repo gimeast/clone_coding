@@ -1,9 +1,13 @@
 import style from './page.module.css';
 import BackButton from '@/app/(afterLogin)/_component/BackButton';
 import Post from '@/app/(afterLogin)/_component/Post';
-import PostForm from '@/app/(afterLogin)/_component/PostForm';
+import CommentForm from '@/app/(afterLogin)/_component/CommentForm';
 
-const Page = () => {
+type Props = {
+    params: Promise<{ username: string; postId: string; photoId: string }>;
+};
+const Page = async ({ params }: Props) => {
+    const { postId } = await params;
     return (
         <div className={style.container}>
             <div className={style.top}>
@@ -11,7 +15,7 @@ const Page = () => {
                 <h2>게시하기</h2>
             </div>
             <Post />
-            <PostForm />
+            <CommentForm postId={postId} />
             <ul>
                 <li>
                     <Post />

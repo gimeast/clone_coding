@@ -12,12 +12,24 @@
     background-color: transparent;
 
     .close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         position: absolute;
         top: 0;
         left: 0;
+        padding: 0.5rem;
+
         color: white;
+        background-color: rgba(191, 191, 191, 0.1);
+        border-radius: 50%;
         z-index: 10;
         outline: none;
+    }
+    .close:hover {
+        background-color: rgba(191, 191, 191, 0.3);
+        transition: background-color 0.2s ease-in;
     }
     .imageZone {
         flex: 1;
@@ -28,9 +40,8 @@
         }
     }
     .commentZone {
-        width: 350px;
-        background-color: white;
-        border-left: 1px solid rgb(239, 243, 244);
+        width: 35rem;
+        background-color: black;
         overflow: auto;
     }
 }
