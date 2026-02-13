@@ -7,6 +7,10 @@
 
     width: 100dvw;
     height: 100dvh;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    margin: 0;
 
     border: none;
     background-color: transparent;
