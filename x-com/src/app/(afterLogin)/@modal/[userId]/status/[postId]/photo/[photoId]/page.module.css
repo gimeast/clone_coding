@@ -1,0 +1,36 @@
+.container::backdrop {
+    background-color: rgba(191, 191, 191, 0.4);
+}
+
+.container {
+    display: flex;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    border: none;
+    background-color: transparent;
+
+    .close {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        z-index: 10;
+        outline: none;
+    }
+    .imageZone {
+        flex: 1;
+        position: relative;
+
+        img {
+            object-fit: contain;
+        }
+    }
+    .commentZone {
+        width: 350px;
+        background-color: white;
+        border-left: 1px solid rgb(239, 243, 244);
+        overflow: auto;
+    }
+}

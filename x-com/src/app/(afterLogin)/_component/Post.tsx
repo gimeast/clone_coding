@@ -10,7 +10,11 @@ import { faker } from '@faker-js/faker/locale/ko';
 
 dayjs.extend(relativeTime);
 
-const Post = () => {
+interface Props {
+    noImage?: boolean;
+}
+
+const Post = ({ noImage }: Props) => {
     const target = {
         postId: 1,
         User: {
@@ -23,7 +27,7 @@ const Post = () => {
         Images: [] as any[],
     };
 
-    if (Math.random() > 0.5) {
+    if (Math.random() > 0.5 && !noImage) {
         target.Images.push({ imageId: 1, link: faker.image.urlPicsumPhotos({ width: 500, height: 300 }) });
     }
 
