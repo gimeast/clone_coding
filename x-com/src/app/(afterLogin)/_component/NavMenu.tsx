@@ -25,7 +25,7 @@ const NavMenu = () => {
                     </Link>
                 </li>
                 <li className={segment === 'chat' ? style.active : ''}>
-                    <Link href='/message'>
+                    <Link href='/messages'>
                         <Mail />
                         Message
                     </Link>

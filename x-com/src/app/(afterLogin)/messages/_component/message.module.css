@@ -1,0 +1,41 @@
+.button:hover {
+    background-color: rgba(191, 191, 191, 0.4);
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    padding: 1.5rem;
+    color: white;
+
+    .profile {
+        border-radius: 50%;
+    }
+
+    .messageWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+
+        font-size: 1.6rem;
+
+        .userInfo {
+            display: flex;
+            gap: 1rem;
+            .name {
+                font-weight: 700;
+            }
+            .id {
+                color: lightgray;
+            }
+        }
+
+        .content {
+            color: lightgray;
+        }
+    }
+}
