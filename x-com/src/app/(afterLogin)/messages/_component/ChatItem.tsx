@@ -1,6 +1,6 @@
 'use client';
 
-import style from './message.module.css';
+import style from './chatItem.module.css';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 dayjs.extend(relativeTime);
 dayjs.locale('ko');
 
-const Message = () => {
+const ChatItem = () => {
     const route = useRouter();
 
     const user = {
@@ -46,4 +46,4 @@ const Message = () => {
     );
 };
 
-export default Message;
+export default ChatItem;

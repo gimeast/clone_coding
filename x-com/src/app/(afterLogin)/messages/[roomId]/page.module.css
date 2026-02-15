@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .userInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+
+        padding-bottom: 6rem;
+
+        font-size: 1.4rem;
+        border-bottom: 1px solid gray;
+
+        img {
+            border-radius: 50%;
+        }
+        .name {
+            font-weight: bold;
+        }
+    }
+
+    .myMessage {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+
+        margin-top: 2rem;
+        font-size: 1.4rem;
+
+        .content {
+            display: inline;
+            padding: 1.2rem;
+
+            background-color: dodgerblue;
+            border-top-left-radius: 2rem;
+            border-top-right-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+        }
+    }
+
+    .yourMessage {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        margin-top: 2rem;
+        font-size: 1.4rem;
+
+        .content {
+            display: inline;
+            padding: 1.2rem;
+
+            color: black;
+            background-color: lightgray;
+            border-top-left-radius: 2rem;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+        }
+    }
+
+    .createdAt {
+        font-size: 1.2rem;
+        color: lightgray;
+    }
+}
