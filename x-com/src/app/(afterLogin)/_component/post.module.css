@@ -43,13 +43,6 @@
         .content {
             color: white;
         }
-
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 2rem;
-            margin-top: 1.4rem;
-        }
     }
     .buttonContainer {
         display: flex;
