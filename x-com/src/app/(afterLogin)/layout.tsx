@@ -7,6 +7,7 @@ import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
 import TrendList from '@/app/(afterLogin)/_component/TrendList';
 import FollowList from '@/app/(afterLogin)/_component/FollowList';
 import RightSearchZone from '@/app/(afterLogin)/_component/RightSearchZone';
+import Image from 'next/image';
 
 const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
     return (
@@ -18,7 +19,13 @@ const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) 
                     </Link>
                 </h1>
                 <NavMenu />
-                <button className={style.logoutButton}>로그아웃 버튼</button>
+                <button className={style.logoutButton}>
+                    <Image className={style.profile} src='/dummy_profile.webp' alt='프로필' width={40} height={40} />
+                    <div>
+                        <span className={style.userName}>Elon_Musk</span>
+                        <span className={style.userId}>@elonmusk</span>
+                    </div>
+                </button>
             </header>
             <main className={style.main}>
                 <div className={style.mainSection}>{children}</div>
