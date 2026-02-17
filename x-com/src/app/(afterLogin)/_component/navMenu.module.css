@@ -1,7 +1,10 @@
 .nav {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    width: 100%;
+    width: 7.2rem;
     font-size: 2.4rem;
 
     ul {
@@ -10,14 +13,8 @@
         gap: 1.5rem;
     }
 
-    li {
-        width: fit-content;
-        padding: 1.2rem;
-
-        a {
-            display: flex;
-            gap: 1.5rem;
-        }
+    li > a > span {
+        display: none;
     }
     li:hover {
         background-color: rgba(236, 238, 243, 0.1);
@@ -32,16 +29,63 @@
     }
 
     .postButton {
-        display: inline-block;
+        display: flex;
         justify-content: center;
+        align-items: center;
 
+        width: 5rem;
         margin-top: 2rem;
-        padding: 1.5rem 9.5rem;
 
         background-color: white;
-        border-radius: 3rem;
+        border-radius: 50%;
         color: black;
         font-size: 1.8rem;
-        font-weight: 700;
+
+        span {
+            display: none;
+        }
+        svg {
+            padding: 1.2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .nav {
+        align-items: flex-start;
+        li {
+            width: fit-content;
+            padding: 1.2rem;
+
+            a {
+                display: flex;
+                gap: 1.5rem;
+
+                span {
+                    display: inline;
+                }
+            }
+        }
+        .postButton {
+            display: inline-block;
+            justify-content: center;
+
+            margin-top: 2rem;
+            padding: 1.5rem 9.5rem;
+
+            background-color: white;
+            border-radius: 3rem;
+            color: black;
+            font-size: 1.8rem;
+            font-weight: 700;
+
+            span {
+                display: flex;
+                justify-content: center;
+            }
+            svg {
+                display: none;
+            }
+        }
     }
 }

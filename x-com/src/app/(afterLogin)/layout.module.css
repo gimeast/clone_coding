@@ -1,19 +1,15 @@
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
+
+    flex: 1;
+    width: 100%;
 
     .leftHeader {
         display: flex;
         flex-direction: column;
-        align-items: start;
-
-        position: sticky;
-        top: 0;
-
-        height: 100dvh;
-        width: 27.5rem;
-        padding: 0 0.8rem;
+        align-items: center;
 
         .logo {
             display: flex;
@@ -32,41 +28,82 @@
                 }
             }
         }
-
-        .logoutButton {
-            color: white;
-        }
     }
-
     .main {
         display: flex;
-        width: 105rem;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 2rem;
 
+        width: 100%;
         border-left: 1px solid gray;
 
         .mainSection {
-            width: 60rem;
+            width: 100%;
+            max-width: 60rem;
             border-right: 1px solid gray;
         }
 
         .rightSection {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            display: none;
+        }
+    }
+}
 
-            width: 35rem;
-            margin-right: 7rem;
-            padding-top: 0.5rem;
+@media screen and (min-width: 702px) {
+    .container {
+        justify-content: center;
 
-            .content {
+        .main {
+            width: unset;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        .main {
+            .rightSection {
                 display: flex;
                 flex-direction: column;
                 gap: 1.5rem;
 
-                position: sticky;
-                top: 1rem;
+                width: 100%;
+                max-width: 35rem;
+                margin-right: 7rem;
+                padding-top: 0.5rem;
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    position: sticky;
+                    top: 1rem;
+                }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        .leftHeader {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            position: sticky;
+            top: 0;
+
+            height: 100dvh;
+            width: 27.5rem;
+            padding: 0 0.8rem;
+
+            .logoutButton {
+                color: white;
+            }
+        }
+        .main {
         }
     }
 }
