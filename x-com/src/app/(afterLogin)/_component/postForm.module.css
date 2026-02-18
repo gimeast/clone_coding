@@ -11,16 +11,21 @@
         border-radius: 50%;
         object-fit: cover;
     }
-    textarea {
-        display: block;
-        padding: 1.4rem 0;
+    div {
+        width: 100%;
 
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        scrollbar-width: none;
+        textarea {
+            display: block;
+            padding: 1.4rem 0;
+
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            scrollbar-width: none;
+        }
     }
+
     .buttonWrapper {
         display: flex;
         justify-content: space-between;

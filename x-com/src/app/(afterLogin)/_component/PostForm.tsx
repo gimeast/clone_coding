@@ -16,7 +16,7 @@ const PostForm = () => {
         <form className={style.formWrapper}>
             <Image className={style.profile} src='/dummy_profile.webp' alt='프로필' width={50} height={50} />
             <div>
-                <textarea cols={50} rows={2} placeholder={"What's happening?"} />
+                <textarea placeholder={"What's happening?"} />
                 <div className={style.buttonWrapper}>
                     <input type='file' ref={fileRef} multiple hidden />
                     <button type='button' className={style.imgButton} onClick={handleFile}>
