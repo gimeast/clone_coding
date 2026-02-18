@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import style from './post.module.css';
-import { Heart, MessageCircle, Repeat2 } from 'lucide-react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import clsx from 'clsx';
 import PostArticle from '@/app/(afterLogin)/_component/PostArticle';
 import Link from 'next/link';
 import { faker } from '@faker-js/faker/locale/ko';
 import PostImages from '@/app/(afterLogin)/_component/PostImages';
+import PostButtonGroup from '@/app/(afterLogin)/_component/PostButtonGroup';
 
 dayjs.extend(relativeTime);
 
@@ -35,10 +34,6 @@ const Post = ({ noImage }: Props) => {
         target.Images.push({ imageId: 4, link: faker.image.urlPicsumPhotos() });
     }
 
-    const commented = false;
-    const reposted = true;
-    const liked = true;
-
     return (
         <PostArticle post={target}>
             <Image className={style.profile} src={target.User.image} alt='프로필' width={50} height={50} />
@@ -54,17 +49,7 @@ const Post = ({ noImage }: Props) => {
                     <p className={style.content}>{target.content}</p>
                     <PostImages post={target} />
                 </div>
-                <div className={style.buttonContainer}>
-                    <button className={clsx(style.commentBtn, commented && style.commented)}>
-                        <MessageCircle />
-                    </button>
-                    <button className={clsx(style.repostBtn, reposted && style.reposted)}>
-                        <Repeat2 />
-                    </button>
-                    <button className={clsx(style.likeBtn, liked && style.liked)}>
-                        <Heart />
-                    </button>
-                </div>
+                <PostButtonGroup />
             </div>
         </PostArticle>
     );
